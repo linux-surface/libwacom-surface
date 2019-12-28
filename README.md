@@ -1,19 +1,14 @@
 # Patches for `libwacom` to support Microsoft Surface Devices
 
-Patches to support Microsoft Surface Devices with `libwacom` and respective Arch Linux package.
-This package is basically Geoff Holden's [fork][libwacom-geoffholden] of [`libwacom`][libwacom] in patch-form with a `PKGBUILD` for Arch Linux.
+Patches to support Microsoft Surface Devices with `libwacom`.
+This patch-set is basically Geoff Holden's [fork][libwacom-geoffholden] of [`libwacom`][libwacom] in patch-form, updated.
+See also https://github.com/linux-surface/libwacom.
+
+For pre-compiled packages see
+- https://github.com/linux-surface/libwacom-surface-deb/releases (Debian, Ubuntu, ...)
+- https://aur.archlinux.org/packages/libwacom-surface/ (Arch Linux)
 
 ## Instructions
-
-### Arch Linux
-
-Simply use the provided `PKGBUILD`, i.e. clone this repository and then, inside this source directory, run
-
-```shell
-makepkg -si
-```
-
-Note: This package replaces the core `libwacom` package.
 
 ### Manual installation
 
