@@ -1,0 +1,9 @@
+usr/lib/*/libwacom.a
+usr/lib/*/libwacom.so
+usr/lib/*/libwacom.so.*
+usr/lib/*/pkgconfig/libwacom.pc
+usr/bin/libwacom-list-local-devices
+usr/include/libwacom-1.0
+usr/share/man/man1/libwacom-list-local-devices.1
+usr/share/libwacom
+lib/udev/rules.d/65-libwacom.rules

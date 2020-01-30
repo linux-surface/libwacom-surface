@@ -1,0 +1,5 @@
+source
+patches
+*.deb
+*.buildinfo
+*.changes

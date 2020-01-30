@@ -1,0 +1,31 @@
+Source: libwacom-surface
+Section: libs
+Priority: optional
+Maintainer: Maximilian Luz <luzmaximilian@gmail.com>
+Build-Depends: debhelper (>= 9),
+ libglib2.0-dev,
+ libgtk2.0-dev,
+ libgudev-1.0-dev,
+ librsvg2-dev,
+ libxml2-dev,
+ git
+
+Package: libwacom-surface
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends},
+Provides: libwacom2 (= ${source:Version}),
+ libwacom-bin (= ${source:Version}),
+ libwacom-common (= ${source:Version}),
+ libwacom-dev (= ${source:Version})
+Conflicts: libwacom2,
+ libwacom-bin,
+ libwacom-common,
+ libwacom-dev
+Replaces: libwacom2,
+ libwacom-bin,
+ libwacom-common,
+ libwacom-dev
+Description: Wacom model feature query library
+ libwacom is a library to identify wacom tablets and their model-specific
+ features. It provides easy access to information such as "is this a built-in
+ on-screen tablet", "what is the size of this model", etc.

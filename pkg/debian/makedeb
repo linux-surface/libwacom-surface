@@ -1,0 +1,26 @@
+#!/bin/bash
+set -e
+
+pkgver="1.2"
+source="https://github.com/linuxwacom/libwacom/releases/download/libwacom-$pkgver/libwacom-$pkgver.tar.bz2"
+
+basepath="$( cd "$(dirname "$0")" ; pwd -P )"
+
+# prepare source
+rm -rf "source"
+
+cd "${basepath}"
+wget "$source"
+tar -xf "libwacom-$pkgver.tar.bz2"
+mv "libwacom-$pkgver" "source"
+
+cd "${basepath}"
+cp -r "debian" "source"
+
+# apply patches
+cd "${basepath}/source"
+for p in "../../../"*.patch; do patch -p1 < "${p}"; done
+
+# build package
+cd "${basepath}/source"
+dpkg-buildpackage -b -us -uc

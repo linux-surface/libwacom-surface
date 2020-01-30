@@ -1,0 +1,20 @@
+#!/usr/bin/make -f
+
+# Install in debian/tmp to retain control through dh_install:
+override_dh_auto_install:
+	dh_auto_install --destdir=debian/tmp
+
+override_dh_install:
+	find debian/tmp -name '*.la' -delete
+	mkdir -p debian/tmp/lib/udev/rules.d/
+	build/tools/generate-udev-rules > debian/tmp/lib/udev/rules.d/65-libwacom.rules
+	dh_install
+
+override_dh_makeshlibs:
+	dh_makeshlibs -V -- -c4
+
+override_dh_auto_configure:
+	dh_auto_configure -- CFLAGS="${CFLAGS} -std=gnu99"
+
+%:
+	dh $@ --builddirectory=build/ --with autoreconf
