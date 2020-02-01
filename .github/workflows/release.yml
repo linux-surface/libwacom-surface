@@ -1,12 +1,13 @@
 on:
   push:
-    branches:
-      - feature/ci
+    tags:
+      - v[0-9]+.*
+      - testing-ci.*
 
 name: Build Packages
 
 jobs:
-  deb:
+  build-deb:
     name: Debian
     runs-on: ubuntu-latest
     container: debian:sid
@@ -50,3 +51,22 @@ jobs:
       with:
         name: debian-latest
         path: release
+
+  release:
+    name: Publish release
+    needs: [build-deb]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download Debian artifacts
+      uses: actions/download-artifact@v1
+      with:
+        name: debian-latest
+
+    - name: Upload assets
+      uses: svenstaro/upload-release-action@v1-release
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ./*-latest/*
+        tag: ${{ github.ref }}
+        overwrite: true
+        file_glob: true
