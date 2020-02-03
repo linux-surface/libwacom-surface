@@ -101,6 +101,8 @@ jobs:
         cp out/noarch/* release/
         cp out/x86_64/* release/
 
+        rm release/libwacom-surface-devel-*
+
     - name: Upload artifacts
       uses: actions/upload-artifact@v1
       with:
@@ -154,6 +156,8 @@ jobs:
 
         cp out/noarch/* release/
         cp out/x86_64/* release/
+
+        rm release/libwacom-surface-devel-*
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v1
