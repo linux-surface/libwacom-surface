@@ -1,3 +1,5 @@
+%global debug_package %{nil}
+
 Name:           libwacom-surface
 Version:        1.2
 Release:        1%{?dist}
