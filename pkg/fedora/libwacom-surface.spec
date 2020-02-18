@@ -2,7 +2,7 @@
 
 Name:           libwacom-surface
 Version:        1.2
-Release:        1%{?dist}
+Release:        3%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
 Provides:       libwacom
