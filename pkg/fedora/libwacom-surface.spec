@@ -50,7 +50,9 @@ Tablet information client library data files.
 %autosetup -S git -n libwacom-%{version}
 ls -l ../
 ls -l ../../../
-bash -c 'for p in "../libwacom-surface/"*.patch; do patch -p1 < "${p}"; done'
+for p in ../libwacom-surface/*.patch; do
+  patch -p1 < "${p}"
+done
 git add . && git commit -q --author 'rpm-build <rpm-build>' -m 'libwacom-surface-%{version} base'
 
 %build
