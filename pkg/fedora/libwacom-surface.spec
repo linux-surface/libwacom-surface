@@ -54,7 +54,7 @@ bash -c 'for p in "../libwacom-surface/"*.patch; do patch -p1 < "${p}"; done'
 git add . && git commit -q --author 'rpm-build <rpm-build>' -m 'libwacom-surface-%{version} base'
 
 %build
-%meson -Dtests=true -Ddocumentation=disabled
+%meson -Dtests=disabled -Ddocumentation=disabled
 %meson_build
 
 %install
@@ -92,6 +92,9 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %{_datadir}/libwacom/layouts/*.svg
 
 %changelog
+* Wed Mar 25 2020 Peter Hutterer <peter.hutterer@redhat.com> 1.3-1
+- libwacom 1.3
+
 * Mon Dec 23 2019 Peter Hutterer <peter.hutterer@redhat.com> 1.2-2
 - Disable documentation explicitly. Fedora uses --auto-features=enabled
   during the build.
