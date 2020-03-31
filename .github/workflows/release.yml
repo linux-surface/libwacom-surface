@@ -66,6 +66,7 @@ jobs:
         dnf distro-sync -y
         dnf install -y rpmdevtools rpm-sign 'dnf-command(builddep)'
         dnf builddep -y pkg/fedora/libwacom-surface.spec
+        dnf downgrade -y annobin
 
     - name: Build package
       run: |
