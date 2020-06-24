@@ -7,4 +7,4 @@ usr/lib/*/pkgconfig/libwacom.pc
 usr/lib/udev/rules.d/65-libwacom.rules
 usr/lib/udev/hwdb.d/65-libwacom.hwdb
 usr/share/libwacom
-usr/share/man/man1/libwacom-list-local-devices.1.gz
+usr/share/man/man1/libwacom-list-local-devices.1
