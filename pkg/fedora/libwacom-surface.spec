@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           libwacom-surface
-Version:        1.3
-Release:        2%{?dist}
+Version:        1.4
+Release:        1%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
 Provides:       libwacom
@@ -12,6 +12,7 @@ License:        MIT
 URL:            https://github.com/linuxwacom/libwacom
 
 Source0:        https://github.com/linuxwacom/libwacom/releases/download/libwacom-%{version}/libwacom-%{version}.tar.bz2
+Patch01:        0001-meson.build-ignore-Makefile.in-when-installing-data.patch
 
 
 BuildRequires:  meson gcc
@@ -62,8 +63,6 @@ git add . && git commit -q --author 'rpm-build <rpm-build>' -m 'libwacom-surface
 %install
 %meson_install
 install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
-# auto-generate the udev rule from the database entries
-%_vpath_builddir/generate-udev-rules > ${RPM_BUILD_ROOT}/%{_udevrulesdir}/65-libwacom.rules
 
 %check
 %meson_test
@@ -87,6 +86,7 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %files data
 %doc COPYING
 %{_udevrulesdir}/65-libwacom.rules
+%{_udevhwdbdir}/65-libwacom.hwdb
 %dir %{_datadir}/libwacom
 %{_datadir}/libwacom/*.tablet
 %{_datadir}/libwacom/*.stylus
@@ -94,8 +94,14 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %{_datadir}/libwacom/layouts/*.svg
 
 %changelog
+* Wed Jun 24 2020 Peter Hutterer <peter.hutterer@redhat.com> 1.4-1
+- libwacom 1.4
+
 * Wed Mar 25 2020 Peter Hutterer <peter.hutterer@redhat.com> 1.3-1
 - libwacom 1.3
+
+* Wed Jan 29 2020 Fedora Release Engineering <releng@fedoraproject.org> - 1.2-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
 * Mon Dec 23 2019 Peter Hutterer <peter.hutterer@redhat.com> 1.2-2
 - Disable documentation explicitly. Fedora uses --auto-features=enabled
@@ -116,6 +122,9 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 * Thu Aug 08 2019 Peter Hutterer <peter.hutterer@redhat.com> 0.99.901-1
 - libwacom 1.0rc1
 - switch to meson
+
+* Thu Jul 25 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.33-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
 * Fri Apr 12 2019 Peter Hutterer <peter.hutterer@redhat.com> 0.33-1
 - libwacom 0.33
@@ -348,4 +357,3 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 
 * Mon Dec 19 2011 Peter Hutterer <peter.hutterer@redhat.com> 0.1-1
 - Initial import (#768800)
-
