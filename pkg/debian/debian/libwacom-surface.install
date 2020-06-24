@@ -1,9 +1,10 @@
+usr/bin/libwacom-list-local-devices
+usr/include/libwacom-1.0
 usr/lib/*/libwacom.a
 usr/lib/*/libwacom.so
 usr/lib/*/libwacom.so.*
 usr/lib/*/pkgconfig/libwacom.pc
-usr/bin/libwacom-list-local-devices
-usr/include/libwacom-1.0
-usr/share/man/man1/libwacom-list-local-devices.1
+usr/lib/udev/rules.d/65-libwacom.rules
+usr/lib/udev/hwdb.d/65-libwacom.hwdb
 usr/share/libwacom
-lib/udev/rules.d/65-libwacom.rules
+usr/share/man/man1/libwacom-list-local-devices.1.gz
