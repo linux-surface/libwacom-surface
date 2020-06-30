@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           libwacom-surface
-Version:        1.4
+Version:        1.4.1
 Release:        1%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
@@ -12,7 +12,6 @@ License:        MIT
 URL:            https://github.com/linuxwacom/libwacom
 
 Source0:        https://github.com/linuxwacom/libwacom/releases/download/libwacom-%{version}/libwacom-%{version}.tar.bz2
-Patch01:        0001-meson.build-ignore-Makefile.in-when-installing-data.patch
 
 
 BuildRequires:  meson gcc
@@ -94,6 +93,9 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %{_datadir}/libwacom/layouts/*.svg
 
 %changelog
+* Tue Jun 30 2020 Peter Hutterer <peter.hutterer@redhat.com> 1.4.1-1
+- libwacom 1.4.1
+
 * Wed Jun 24 2020 Peter Hutterer <peter.hutterer@redhat.com> 1.4-1
 - libwacom 1.4
 

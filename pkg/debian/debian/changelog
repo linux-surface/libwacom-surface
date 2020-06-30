@@ -1,3 +1,9 @@
+libwacom-surface (1.4.1-1) unstable; urgency=medium
+
+  * Update to libwacom-1.4.1
+
+ -- Maximilian Luz <luzmaximilian@gmail.com>  Tue, 30 Jun 2020 12:17:04 +0200
+
 libwacom-surface (1.4-1) unstable; urgency=medium
 
   * Update to libwacom-1.4
