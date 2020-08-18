@@ -2,7 +2,7 @@
 
 Name:           libwacom-surface
 Version:        1.4.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
 Provides:       libwacom
@@ -93,6 +93,9 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %{_datadir}/libwacom/layouts/*.svg
 
 %changelog
+* Tue Aug 18 2020 Maximilian Luz <luzmaximilian@gmail.com> 1.4.1-2
+- add iptsd support
+
 * Tue Jun 30 2020 Peter Hutterer <peter.hutterer@redhat.com> 1.4.1-1
 - libwacom 1.4.1
 
