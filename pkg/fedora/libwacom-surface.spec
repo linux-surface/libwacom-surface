@@ -2,7 +2,7 @@
 
 Name:           libwacom-surface
 Version:        1.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
 Provides:       libwacom
@@ -93,6 +93,9 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %{_datadir}/libwacom/layouts/*.svg
 
 %changelog
+* Tue Sep 29 2020 Dorian Stoll <dorian.stoll@tmsp.io> - 1.5-2
+- Bump release to build for Fedora 33
+
 * Mon Aug 31 2020 Peter Hutterer <peter.hutterer@redhat.com> 1.5-1
 - libwacom 1.5
 
