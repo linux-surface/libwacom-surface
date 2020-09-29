@@ -4,9 +4,7 @@ Priority: optional
 Maintainer: Maximilian Luz <luzmaximilian@gmail.com>
 Build-Depends: debhelper (>= 9),
  libglib2.0-dev,
- libgtk2.0-dev,
  libgudev-1.0-dev,
- librsvg2-dev,
  libxml2-dev,
  git
 

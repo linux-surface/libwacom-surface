@@ -21,7 +21,7 @@ jobs:
         sed 's/^deb /deb-src /' /etc/apt/sources.list >> /etc/apt/sources.list
         apt-get -y update
         apt-get -y install build-essential debhelper dpkg-sig fakeroot wget git
-        apt-get -y build-dep libwacom
+        apt-get -y build-dep libwacom libwacom-dev
 
     - name: Build package
       run: |
@@ -64,7 +64,7 @@ jobs:
     - name: Install build dependencies
       run: |
         dnf distro-sync -y
-        dnf install -y rpmdevtools rpm-sign 'dnf-command(builddep)'
+        dnf install -y make rpmdevtools rpm-sign 'dnf-command(builddep)'
         dnf builddep -y pkg/fedora/libwacom-surface.spec
 
     - name: Build package
