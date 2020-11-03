@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           libwacom-surface
-Version:        1.5
-Release:        2%{?dist}
+Version:        1.6
+Release:        1%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
 Provides:       libwacom
@@ -20,7 +20,7 @@ BuildRequires:  systemd systemd-devel
 BuildRequires:  git
 BuildRequires:  libxml2-devel
 
-Requires: %{name}-data = %{version}-%{release}
+Requires:       %{name}-data = %{version}-%{release}
 
 %description
 %{name} is a library that provides information about Wacom tablets and
@@ -93,6 +93,9 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %{_datadir}/libwacom/layouts/*.svg
 
 %changelog
+* Tue Nov 03 2020 Peter Hutterer <peter.hutterer@redhat.com> 1.6-1
+- libwacom 1.6
+
 * Tue Sep 29 2020 Dorian Stoll <dorian.stoll@tmsp.io> - 1.5-2
 - Bump release to build for Fedora 33
 

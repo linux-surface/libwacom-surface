@@ -1,3 +1,9 @@
+libwacom-surface (1.6-1) unstable; urgency=medium
+
+  * Update to libwacom-1.6
+
+ -- Maximilian Luz <luzmaximilian@gmail.com>  Tue, 03 Nov 2020 15:25:47 +0100
+
 libwacom-surface (1.5-2) unstable; urgency=medium
 
   * Bump release to build for Fedora 33
