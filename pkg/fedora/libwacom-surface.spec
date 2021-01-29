@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           libwacom-surface
-Version:        1.7
+Version:        1.8
 Release:        1%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
@@ -12,8 +12,6 @@ License:        MIT
 URL:            https://github.com/linuxwacom/libwacom
 
 Source0:        https://github.com/linuxwacom/libwacom/releases/download/libwacom-%{version}/libwacom-%{version}.tar.bz2
-
-Patch01:	0001-meson.build-fix-typo-causing-the-data-file-test-to-b.patch
 
 BuildRequires:  meson gcc
 BuildRequires:  glib2-devel libgudev1-devel
