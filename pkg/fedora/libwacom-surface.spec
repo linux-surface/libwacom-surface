@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           libwacom-surface
-Version:        1.8
+Version:        1.9
 Release:        1%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
@@ -72,6 +72,7 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %doc README.md
 %{_libdir}/libwacom.so.*
 %{_bindir}/libwacom-list-local-devices
+%{_bindir}/libwacom-show-stylus
 %{_mandir}/man1/libwacom-list-local-devices.1*
 
 %files devel
@@ -92,6 +93,21 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %{_datadir}/libwacom/layouts/*.svg
 
 %changelog
+* Wed Feb 24 2021 Peter Hutterer <peter.hutterer@redhat.com> 1.9-1
+- libwacom 1.9
+
+* Tue Feb 09 2021 Peter Hutterer <peter.hutterer@redhat.com> 1.8-2
+- Add tablet file for Lenovo Yoga 6
+
+* Fri Jan 29 2021 Peter Hutterer <peter.hutterer@redhat.com> 1.8-1
+- libwacom 1.8
+
+* Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1.7-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
+* Thu Jan 14 2021 Peter Hutterer <peter.hutterer@redhat.com> 1.7-2
+- Add tablet file for Lenovo ThinkPad P15 (#1914409)
+
 * Thu Dec 17 2020 Peter Hutterer <peter.hutterer@redhat.com> 1.7-1
 - libwacom 1.7
 
