@@ -1,0 +1,27 @@
+From 7d0cf8a5842e61ac099339aa6899a5e3a7d4cb13 Mon Sep 17 00:00:00 2001
+From: Peter Hutterer <peter.hutterer@who-t.net>
+Date: Wed, 28 Apr 2021 15:31:22 +1000
+Subject: [PATCH libwacom] meson.build: exclude the layouts/README.md and
+ pycache files from install
+
+Signed-off-by: Peter Hutterer <peter.hutterer@who-t.net>
+---
+ meson.build | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/meson.build b/meson.build
+index 38fc89f..c44043e 100644
+--- a/meson.build
++++ b/meson.build
+@@ -124,7 +124,8 @@ install_subdir('data',
+ 			       'Makefile.in',
+ 			       'layouts/Makefile.am',
+ 			       'layouts/Makefile.in',
+-			       'layouts/README'])
++			       'layouts/README.md'],
++	       exclude_directories: ['__pycache__'])
+ 
+ test('files-in-git',
+      find_program('data/check-files-in-git.sh'),
+-- 
+2.31.1
