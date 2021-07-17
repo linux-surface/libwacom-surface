@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           libwacom-surface
-Version:        1.10
+Version:        1.11
 Release:        1%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
@@ -12,7 +12,6 @@ License:        MIT
 URL:            https://github.com/linuxwacom/libwacom
 
 Source0:        https://github.com/linuxwacom/libwacom/releases/download/libwacom-%{version}/libwacom-%{version}.tar.bz2
-Patch01:        0001-meson.build-exclude-the-layouts-README.md-and-pycach.patch
 
 BuildRequires:  meson gcc
 BuildRequires:  glib2-devel libgudev1-devel
@@ -98,6 +97,9 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %{_datadir}/libwacom/layouts/*.svg
 
 %changelog
+* Fri Jul 16 2021 Peter Hutterer <peter.hutterer@redhat.com> - 1.11-1
+- libwacom 1.11
+
 * Wed Apr 28 2021 Peter Hutterer <peter.hutterer@redhat.com> 1.10-1
 - libwacom 1.10
 
