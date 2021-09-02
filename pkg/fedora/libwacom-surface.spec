@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           libwacom-surface
-Version:        1.11
+Version:        1.12
 Release:        1%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
@@ -97,6 +97,9 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %{_datadir}/libwacom/layouts/*.svg
 
 %changelog
+* Wed Sep 01 2021 Peter Hutterer <peter.hutterer@redhat.com> - 1.12-1
+- libwacom 1.12
+
 * Fri Jul 16 2021 Peter Hutterer <peter.hutterer@redhat.com> - 1.11-1
 - libwacom 1.11
 
