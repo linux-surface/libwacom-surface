@@ -1,3 +1,9 @@
+libwacom-surface (1.12-2) unstable; urgency=medium
+
+  * Bump package release
+
+ -- Maximilian Luz <luzmaximilian@gmail.com>  Sun, 31 Oct 2021 23:00:40 +0100
+
 libwacom-surface (1.12-1) unstable; urgency=medium
 
   * Update to libwacom-1.12
