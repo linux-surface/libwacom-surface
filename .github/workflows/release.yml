@@ -56,7 +56,9 @@ jobs:
   build-f35:
     name: Build Fedora 35 package
     runs-on: ubuntu-latest
-    container: fedora:35
+    container:
+      image: fedora:35
+      options: --security-opt seccomp=unconfined
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -310,7 +312,9 @@ jobs:
     name: Update Fedora 35 package repository
     needs: [release]
     runs-on: ubuntu-latest
-    container: fedora:35
+    container:
+      image: fedora:35
+      options: --security-opt seccomp=unconfined
     steps:
     - name: Install dependencies
       run: |
