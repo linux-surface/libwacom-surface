@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           libwacom-surface
-Version:        1.12
-Release:        2%{?dist}
+Version:        2.0.0
+Release:        1%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
 Provides:       libwacom
@@ -11,7 +11,7 @@ Conflicts:      libwacom
 License:        MIT
 URL:            https://github.com/linuxwacom/libwacom
 
-Source0:        https://github.com/linuxwacom/libwacom/releases/download/libwacom-%{version}/libwacom-%{version}.tar.bz2
+Source0:        https://github.com/linuxwacom/libwacom/releases/download/libwacom-%{version}/libwacom-%{version}.tar.xz
 
 BuildRequires:  meson gcc
 BuildRequires:  glib2-devel libgudev1-devel
@@ -97,8 +97,17 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %{_datadir}/libwacom/layouts/*.svg
 
 %changelog
+* Mon Jan 17 2022 Peter Hutterer <peter.hutterer@redhat.com> - 2.0.0-1
+- libwacom 2.0.0
+
+* Mon Dec 13 2021 Peter Hutterer <peter.hutterer@redhat.com> - 1.99.1-1
+- libwacom 1.99.1
+
 * Wed Sep 01 2021 Peter Hutterer <peter.hutterer@redhat.com> - 1.12-1
 - libwacom 1.12
+
+* Thu Jul 22 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1.11-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 
 * Fri Jul 16 2021 Peter Hutterer <peter.hutterer@redhat.com> - 1.11-1
 - libwacom 1.11

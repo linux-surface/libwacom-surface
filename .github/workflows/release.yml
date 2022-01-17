@@ -20,7 +20,7 @@ jobs:
       run: |
         sed 's/^deb /deb-src /' /etc/apt/sources.list >> /etc/apt/sources.list
         apt-get -y update
-        apt-get -y install build-essential debhelper dpkg-sig fakeroot wget git
+        apt-get -y install build-essential debhelper dpkg-sig fakeroot wget git meson python3-pyudev python3-pytest python3-libevdev
         apt-get -y build-dep libwacom libwacom-dev
 
     - name: Build package

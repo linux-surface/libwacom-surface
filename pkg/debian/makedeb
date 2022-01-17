@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-pkgver="1.12"
-source="https://github.com/linuxwacom/libwacom/releases/download/libwacom-$pkgver/libwacom-$pkgver.tar.bz2"
+pkgver="2.0.0"
+source="https://github.com/linuxwacom/libwacom/releases/download/libwacom-$pkgver/libwacom-$pkgver.tar.xz"
 
 basepath="$( cd "$(dirname "$0")" ; pwd -P )"
 
@@ -11,7 +11,7 @@ rm -rf "source"
 
 cd "${basepath}"
 wget "$source"
-tar -xf "libwacom-$pkgver.tar.bz2"
+tar -xf "libwacom-$pkgver.tar.xz"
 mv "libwacom-$pkgver" "source"
 
 cd "${basepath}"
