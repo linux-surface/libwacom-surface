@@ -18,10 +18,11 @@ jobs:
 
     - name: Install build dependencies
       run: |
+        echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
         sed 's/^deb /deb-src /' /etc/apt/sources.list >> /etc/apt/sources.list
-        apt-get -y update
-        apt-get -y install build-essential debhelper dpkg-sig fakeroot wget git meson python3-pyudev python3-pytest python3-libevdev
-        apt-get -y build-dep libwacom libwacom-dev
+        apt-get -q -y update
+        apt-get -q -y install build-essential debhelper dpkg-sig fakeroot wget git meson python3-pyudev python3-pytest python3-libevdev
+        apt-get -q -y build-dep libwacom libwacom-dev
 
     - name: Build package
       run: |
