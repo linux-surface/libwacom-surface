@@ -10,7 +10,7 @@ jobs:
   build-deb:
     name: Debian
     runs-on: ubuntu-latest
-    container: debian:sid
+    container: ubuntu:18.04
 
     steps:
     - name: Checkout code
