@@ -45,7 +45,7 @@ jobs:
     - name: Prepare release
       run: |
         mkdir release
-        rm ./pkg/debian/libwacom-surface-dbgsym_*.deb
+        rm -f ./pkg/debian/libwacom-surface-dbgsym_*.deb || true
         mv ./pkg/debian/*.deb release
 
     - name: Upload artifacts
