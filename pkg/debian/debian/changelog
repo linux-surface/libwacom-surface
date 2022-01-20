@@ -1,4 +1,10 @@
-libwacom-surface (1.12.1-2) UNRELEASED; urgency=medium
+libwacom-surface (1.12.1-3) unstable; urgency=medium
+
+  * Bump package release
+
+ -- Maximilian Luz <luzmn@xws.localdomain>  Thu, 20 Jan 2022 18:30:13 +0100
+
+libwacom-surface (1.12.1-2) unstable; urgency=medium
 
   * Bump package release
 
