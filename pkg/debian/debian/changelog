@@ -1,8 +1,8 @@
-libwacom-surface (2.0.0-1) unstable; urgency=medium
+libwacom-surface (1.12.1-2) UNRELEASED; urgency=medium
 
-  * Update to libwacom-2.0.0
+  * Bump package release
 
- -- Maximilian Luz <luzmaximilian@gmail.com>  Mon, 17 Jan 2022 20:31:12 +0100
+ -- Maximilian Luz <luzmn@xws.localdomain>  Thu, 20 Jan 2022 16:54:50 +0100
 
 libwacom-surface (1.12-2) unstable; urgency=medium
 
