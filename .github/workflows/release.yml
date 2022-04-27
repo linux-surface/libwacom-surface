@@ -24,9 +24,22 @@ jobs:
         apt-get -q -y install build-essential debhelper dpkg-sig fakeroot wget git meson python3-pyudev python3-pytest python3-libevdev
         apt-get -q -y build-dep libwacom libwacom-dev
 
+        # makedeb
+        wget -qO - 'https://proget.hunterwittenborn.com/debian-feeds/makedeb.pub' | \
+            gpg --dearmor | \
+            tee /usr/share/keyrings/makedeb-archive-keyring.gpg &> /dev/null
+
+        echo 'deb [signed-by=/usr/share/keyrings/makedeb-archive-keyring.gpg arch=all] https://proget.hunterwittenborn.com/ makedeb main' | \
+            tee /etc/apt/sources.list.d/makedeb.list
+        
+        apt-get -q -y update
+        apt-get -q -y install makedeb
+
     - name: Build package
       run: |
-        ./pkg/debian/makedeb
+        cd pkg/debian
+        ./updlinks.sh
+        makedeb
 
     - name: Sign package
       env:
