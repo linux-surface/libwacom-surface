@@ -21,7 +21,8 @@ jobs:
         echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
         sed 's/^deb /deb-src /' /etc/apt/sources.list >> /etc/apt/sources.list
         apt-get -q -y update
-        apt-get -q -y install build-essential debhelper dpkg-sig fakeroot wget git meson python3-pyudev python3-pytest python3-libevdev sudo
+        apt-get -q -y install build-essential debhelper dpkg-sig fakeroot wget git meson \
+            python3-pyudev python3-pytest python3-libevdev sudo gpg
         apt-get -q -y build-dep libwacom libwacom-dev
 
         # makedeb
@@ -41,10 +42,15 @@ jobs:
         ./updlinks.sh
 
         # Fix permissions (can't makepkg as root)
-        echo "nobody ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-        chown -R nobody .
+        useradd -m build
+        echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+        chown -R build .
 
-        su nobody --pty -p -s /bin/bash -c 'makedeb --sync-deps --skip-pgp-check --no-confirm'
+        # Import GPG key for liwbacom/Peter Hutterer
+        su build --pty -s /bin/bash -c 'gpg --keyserver hkps://pgp.surf.nl --recv-keys 3C2C43D9447D5938EF4551EBE23B7E70B467F0BF'
+
+        # build package
+        su build --pty -s /bin/bash -c 'makedeb --sync-deps --no-confirm'
 
     - name: Sign package
       env:
