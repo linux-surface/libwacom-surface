@@ -1,8 +1,13 @@
 %global debug_package %{nil}
 
 Name:           libwacom-surface
+%if %{fedora} >= 36
+Version:        2.2.0
+Release:        1%{?dist}
+%else
 Version:        1.12.1
 Release:        4%{?dist}
+%endif
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
 Provides:       libwacom
@@ -11,7 +16,11 @@ Conflicts:      libwacom
 License:        MIT
 URL:            https://github.com/linuxwacom/libwacom
 
+%if %{fedora} >= 36
+Source0:        https://github.com/linuxwacom/libwacom/releases/download/libwacom-%{version}/libwacom-%{version}.tar.xz
+%else
 Source0:        https://github.com/linuxwacom/libwacom/releases/download/libwacom-%{version}/libwacom-%{version}.tar.bz2
+%endif
 
 BuildRequires:  meson gcc
 BuildRequires:  glib2-devel libgudev1-devel
@@ -47,11 +56,15 @@ Tablet information client library data files.
 
 %prep
 %autosetup -S git -n libwacom-%{version}
-ls -l ../
-ls -l ../../../
-for p in ../libwacom-surface/*.patch; do
+%if %{fedora} >= 36
+for p in ../libwacom-surface/v2/*.patch; do
   patch -p1 < "${p}"
 done
+%else
+for p in ../libwacom-surface/v1/*.patch; do
+  patch -p1 < "${p}"
+done
+%endif
 git add . && git commit -q --author 'rpm-build <rpm-build>' -m 'libwacom-surface-%{version} base'
 
 %build
@@ -97,6 +110,9 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %{_datadir}/libwacom/layouts/*.svg
 
 %changelog
+* Thu Apr 28 2022 Maximilian Luz <luzmaximilian@gmail.com> - 2.2.0-1
+- Add support for libwacom-2.x
+
 * Mon Jan 17 2022 Peter Hutterer <peter.hutterer@redhat.com> - 1.12.1-1
 - libwacom 1.12.1
 
