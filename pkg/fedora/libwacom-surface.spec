@@ -6,7 +6,7 @@ Version:        2.2.0
 Release:        1%{?dist}
 %else
 Version:        1.12.1
-Release:        4%{?dist}
+Release:        5%{?dist}
 %endif
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
