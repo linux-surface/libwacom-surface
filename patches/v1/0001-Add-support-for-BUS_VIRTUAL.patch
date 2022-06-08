@@ -1,7 +1,7 @@
-From 3bb2424c1a5db35c454b1c5995f8afec2fb34b86 Mon Sep 17 00:00:00 2001
+From 3f437a3a53b2159bb385335be0598f8859ff385f Mon Sep 17 00:00:00 2001
 From: Dorian Stoll <dorian.stoll@tmsp.io>
 Date: Sat, 27 Jun 2020 18:21:11 +0200
-Subject: [PATCH 01/11] Add support for BUS_VIRTUAL
+Subject: [PATCH 01/12] Add support for BUS_VIRTUAL
 
 This is needed to support IPTS devices through the iptsd userspace
 daemon. It exposes the touchscreen / stylus as uinput, since the parsing
@@ -42,7 +42,7 @@ index a8987f7..3c7d0de 100644
  	g_assert_not_reached ();
  }
 diff --git a/libwacom/libwacom.c b/libwacom/libwacom.c
-index ccfe43a..d9b8a22 100644
+index 935344c..88d0777 100644
 --- a/libwacom/libwacom.c
 +++ b/libwacom/libwacom.c
 @@ -149,6 +149,10 @@ get_bus_vid_pid (GUdevDevice  *device,
@@ -56,7 +56,7 @@ index ccfe43a..d9b8a22 100644
  	}
  
  out:
-@@ -817,6 +821,7 @@ static void print_match(int fd, const WacomMatch *match)
+@@ -797,6 +801,7 @@ static void print_match(int fd, const WacomMatch *match)
  		case WBUSTYPE_USB:		bus_name = "usb";	break;
  		case WBUSTYPE_SERIAL:		bus_name = "serial";	break;
  		case WBUSTYPE_I2C:		bus_name = "i2c";	break;
@@ -65,7 +65,7 @@ index ccfe43a..d9b8a22 100644
  		default:			g_assert_not_reached(); break;
  	}
 diff --git a/libwacom/libwacom.h b/libwacom/libwacom.h
-index cafed64..b184ed7 100644
+index d611c9d..a4cbb23 100644
 --- a/libwacom/libwacom.h
 +++ b/libwacom/libwacom.h
 @@ -149,6 +149,7 @@ typedef enum {
@@ -102,5 +102,5 @@ index 3953b1e..734463f 100755
          assert re.match('[0-9a-f]{4}', pid), f'{tabletfile}: {pid} must be lowercase hex'
  
 -- 
-2.35.1
+2.36.1
 
