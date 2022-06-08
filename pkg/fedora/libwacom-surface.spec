@@ -3,10 +3,10 @@
 Name:           libwacom-surface
 %if %{fedora} >= 36
 Version:        2.2.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 %else
 Version:        1.12.1
-Release:        5%{?dist}
+Release:        6%{?dist}
 %endif
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
@@ -110,6 +110,9 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %{_datadir}/libwacom/layouts/*.svg
 
 %changelog
+* Thu Apr 28 2022 Maximilian Luz <luzmaximilian@gmail.com> - 2.2.0-2
+- Re-add accidentally dropped tablet data for Surface Pro 3
+
 * Thu Apr 28 2022 Maximilian Luz <luzmaximilian@gmail.com> - 2.2.0-1
 - Add support for libwacom-2.x
 
