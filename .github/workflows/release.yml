@@ -47,7 +47,7 @@ jobs:
         chown -R build .
 
         # Import GPG key for liwbacom/Peter Hutterer
-        su build --pty -s /bin/bash -c 'gpg --keyserver hkps://pgp.surf.nl --recv-keys 3C2C43D9447D5938EF4551EBE23B7E70B467F0BF'
+        su build --pty -s /bin/bash -c 'gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys 3C2C43D9447D5938EF4551EBE23B7E70B467F0BF'
 
         # build package
         su build --pty -s /bin/bash -c 'makedeb --sync-deps --no-confirm'
