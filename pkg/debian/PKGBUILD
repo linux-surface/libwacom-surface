@@ -23,7 +23,6 @@ makedepends=(
     'libglib2.0-dev'
     'libgudev-1.0-dev'
     'libxml2-dev'
-    'systemd'
     'udev'
 )
 checkdepends=(
