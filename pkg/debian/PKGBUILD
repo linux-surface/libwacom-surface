@@ -30,7 +30,10 @@ checkdepends=(
     'python3-pytest'
     'python3-pyudev'
 )
-validpgpkeys=('3C2C43D9447D5938EF4551EBE23B7E70B467F0BF')
+validpgpkeys=(
+    '3C2C43D9447D5938EF4551EBE23B7E70B467F0BF'
+    '594ABBA066118C7A02D10A80A8AF906D9307FBAD'
+)
 
 source=(
     "https://github.com/linuxwacom/libwacom/releases/download/libwacom-${_pkgver1}/libwacom-${_pkgver1}.tar.bz2"{,.sig}
