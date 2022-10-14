@@ -26,13 +26,15 @@ jobs:
         apt-get -q -y build-dep libwacom libwacom-dev
 
         # makedeb
-        wget -qO - 'https://proget.hunterwittenborn.com/debian-feeds/makedeb.pub' | \
-            gpg --dearmor | \
-            tee /usr/share/keyrings/makedeb-archive-keyring.gpg &> /dev/null
+        wget -qO - 'https://proget.makedeb.org/debian-feeds/makedeb.pub' \
+          | gpg --dearmor \
+          | sudo tee /usr/share/keyrings/makedeb-archive-keyring.gpg 1> /dev/null
 
-        echo 'deb [signed-by=/usr/share/keyrings/makedeb-archive-keyring.gpg arch=all] https://proget.hunterwittenborn.com/ makedeb main' | \
-            tee /etc/apt/sources.list.d/makedeb.list
-        
+        echo 'deb [signed-by=/usr/share/keyrings/makedeb-archive-keyring.gpg arch=all] https://proget.makedeb.org/ makedeb main' \
+          | sudo tee /etc/apt/sources.list.d/makedeb.list
+
+        sudo apt update
+
         apt-get -q -y update
         apt-get -q -y install makedeb
 
