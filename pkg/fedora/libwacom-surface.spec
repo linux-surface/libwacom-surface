@@ -2,7 +2,7 @@
 
 Name:           libwacom-surface
 %if %{fedora} >= 36
-Version:        2.4.0
+Version:        2.5.0
 Release:        1%{?dist}
 %else
 Version:        1.12.1
