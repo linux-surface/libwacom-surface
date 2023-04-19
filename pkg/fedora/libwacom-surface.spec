@@ -3,10 +3,10 @@
 Name:           libwacom-surface
 %if %{fedora} >= 36
 Version:        2.6.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 %else
 Version:        1.12.1
-Release:        9%{?dist}
+Release:        10%{?dist}
 %endif
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
