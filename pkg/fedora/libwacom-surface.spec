@@ -1,13 +1,8 @@
 %global debug_package %{nil}
 
 Name:           libwacom-surface
-%if %{fedora} >= 36
-Version:        2.6.0
-Release:        2%{?dist}
-%else
-Version:        1.12.1
-Release:        10%{?dist}
-%endif
+Version:        2.7.0
+Release:        1%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
 Provides:       libwacom
@@ -16,11 +11,7 @@ Conflicts:      libwacom
 License:        MIT
 URL:            https://github.com/linuxwacom/libwacom
 
-%if %{fedora} >= 36
 Source0:        https://github.com/linuxwacom/libwacom/releases/download/libwacom-%{version}/libwacom-%{version}.tar.xz
-%else
-Source0:        https://github.com/linuxwacom/libwacom/releases/download/libwacom-%{version}/libwacom-%{version}.tar.bz2
-%endif
 
 BuildRequires:  meson gcc
 BuildRequires:  glib2-devel libgudev1-devel
@@ -56,15 +47,9 @@ Tablet information client library data files.
 
 %prep
 %autosetup -S git -n libwacom-%{version}
-%if %{fedora} >= 36
 for p in ../libwacom-surface/v2/*.patch; do
   patch -p1 < "${p}"
 done
-%else
-for p in ../libwacom-surface/v1/*.patch; do
-  patch -p1 < "${p}"
-done
-%endif
 git add . && git commit -q --author 'rpm-build <rpm-build>' -m 'libwacom-surface-%{version} base'
 
 %build
