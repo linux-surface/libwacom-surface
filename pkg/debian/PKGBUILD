@@ -12,7 +12,7 @@ pkgname=(
 _pkgver1=1.12.1
 _pkgver2=2.7.0
 pkgver=2.7.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Patched libwacom for Microsoft Surface devices"
 arch=('amd64')
 url="https://github.com/linux-surface/libwacom"
@@ -50,6 +50,7 @@ source=(
     'v1-0010-data-Add-Microsoft-Surface-Book-2-15.patch'
     'v1-0011-data-Add-Microsoft-Surface-Book-3-13.5.patch'
     'v1-0012-data-Add-Microsoft-Surface-Book-3-15.patch'
+    'v1-0013-data-Add-Microsoft-Surface-Pro-7.patch'
     'v2-0001-Add-support-for-BUS_VIRTUAL.patch'
     'v2-0002-Add-support-for-Intel-Management-Engine-bus.patch'
     'v2-0003-data-Add-Microsoft-Surface-Pro-3.patch'
@@ -62,35 +63,38 @@ source=(
     'v2-0010-data-Add-Microsoft-Surface-Book-2-15.patch'
     'v2-0011-data-Add-Microsoft-Surface-Book-3-13.5.patch'
     'v2-0012-data-Add-Microsoft-Surface-Book-3-15.patch'
+    'v2-0013-data-Add-Microsoft-Surface-Pro-7.patch'
 )
 sha256sums=('053687f64fdb1c8947cf0e54743c47bfcfba8ef3cb22466a1faa1e2c37ccb315'
             'SKIP'
             '853929bd73fba2064b12142dbbee4b3bf84509197ff46a4da559eddf62d32cdf'
             'SKIP'
-            '1ed944ebfff70925d7b72014892a861056eb3c92d06978ba344aac9b90dba921'
-            '26be090f8f4a8da4ce4729612126cc6178cbbc7dc574d240fd7d054dbd65e543'
-            'a426814d21250b47e56c79e0eee53d483698700bc7f3ca0c2a0bb27ca006765b'
-            'b34f34132c7ebae629db35153f7afee646e2ff15ff0251177dd81325b8525b92'
-            '71780cce3983f71d62928664769e5774db76a5c7c9ef0125a9c7f484388ccad1'
-            '245a4924ec297821e6ea98ac81af7ee95835556d5115b25edecc1be209f2fba0'
-            'dffc98e5f30bceba817c2ad3eeb6067091b63442a892391f65875ef36337abd2'
-            '23f054b3b77b7331d29ec3addb42433d2189ea0f58836257e55c38e93efa7bad'
-            '776a70e00cd7855da9efd2976409cccdac2a52bed54c6210674cc4679e97ad2d'
-            'bd444fa63e2c2125727ebdb8dd62119f9bcc3934c53339f7f4ebf108618ec59e'
-            'ce780091102ec9cc5acf2e029bd43b2beebd1e181a9f8bed16da44f9b3ce17fe'
-            '9963560ed413c5340d870c7221d7682734fa85235e3131f77076262a6962e899'
-            '0041920d4d29b02d0e2b05fc63ad9e4b3c4cc28579f3a9a4638a4505d1fb9f6b'
-            '1be62a8e1b901cb6f89da71a76f073a03a3c14d56edc936fac7f5eaa71baf420'
-            '7b15be0134391de1df67ba6f23bb8f5ae2c820d924b73216b0d45b179f0fbf69'
-            '570e905787ebd1b26610ea47faaf245eb1af1d61891ab433a5c6684ffb507ed2'
-            'c6558d5f996a360633259b01e036870439eaf1d20f8d1baab18a26f9698bf8a7'
-            '4527ef6685744f012ca791b7b118344250b3bec67e1973eba80119876e28ff20'
-            '2f0286c0c6cb76bc9c1cd3db44f281754f43ea4a839b0cc604dce12400aafe90'
-            'bd4fc2ccabff9830985c8c36f42d3913d7eacf3406731f71a08114f016542601'
-            'f93e3769f881c2834f442da0b67fd94ab369d0cc6bdb9b09e15c86b1caa67482'
-            'e33b4edb33413d9e97c57bee71b6cdbffb5efb6a83c8452b62307255c1c9b6ce'
-            '93a45c1f4755a7fb41572dbe70f3b9f2dcbbcdaf8eb0cf8baf55d897d4309526'
-            '5ab4afb7208b91eb93b5dafde1ace9b8139cfd2e7aa47c0e8c977b5d40ae8286')
+            '29fe828262193801e7813a721aed82894479d0288bf5edf22158b94d3a258112'
+            '4e595acddfbb84b80684e89645b02c9565347a2b423b20fdc690fa831c791945'
+            '1af322d7baa054d5f106f94269a3e501b63145efc3dea8877148d10b63fa26f5'
+            'ba7b8932b8e8e89451d5202d59ef65204890db22dcc568158132292b47bf4346'
+            '8c98799f248bf717a54e09d3f626ee02cd63e1087a1be0a21a0421bdba4477d7'
+            'e91bbe27687557bd9ba8d12f684cfb7108e3da10fc1ef657e5625d13f7238bb7'
+            '4d5e5611032226ce5a45f047056597f6e715c22fe0c0395b8611a3044bfef1c9'
+            'ab0aa2f199ef95c0f04a14d06b066025c70834097fa9e88b78e298871b9e594b'
+            'b07acf62412498d09a5f567418f427640943f2662bbff8daa7099b4cacc27b9b'
+            'f00ad12fcf3a7eb3c01aa0833ba96a9c7f644cb2da26551370a90f04fb1287a4'
+            '03b20c5db945963e6f3773b581af15840537f6a9846ae1c9862812746ec7f68a'
+            '580016502b1d618e768aac2c524047b8f411245871216abba3fdbd9eb93f2489'
+            'cc28a673f1aa99a6554d9db93c968a7943e575ada8a35a4a9f7bb057782f691c'
+            '416bd97440be1bc602e79086f128b931e09c3895563995d227eb993b0c8ee57d'
+            '15179a1929df962e239521e8c15ec709e54d324fdecf45c96524a0c8d63dbd98'
+            'db77bc0f6cf9419708d1088a1a9bf38dbcc9dc8e7c6a2cd8342e7e1fea991381'
+            'ff24ca67ba308802301a9a917a2df10654fbb865381538b43cb66b86a4ca10f8'
+            'e55921b4f067cea62b7395b1d8e74fef5ea5e2674b2feaebd5d73743fc481268'
+            '58129638de2d12d43c65a552baf131d9ec3b128bdb207c3fa791491009929d3f'
+            '4c7a75a339d07edb81fe2e6ca2399064d83f2238c05b6b438491ce5f3d7c2b7c'
+            '414f998826d081905f654a92480899bf00f42324b29066e936e867c2e0c4ed4e'
+            'e7e7238f044c43171ad4f45afd1fd6fd4cd583858bcc6a1c7ad81b4bb5e379cb'
+            '8781f138968cd7a6b01c38bedcb84d13b5f572277c49d2ef878349e5f4cf7945'
+            'ec25e26b22d3a21f09357eb88cef8b148849d24c96882cf29064e4fa506f64a4'
+            '2cd13ac5b7d4bed85eefcfcaccbe2947a5c2db222da6b2515eba78fff45fedca'
+            '93a1dd06fe6a75ad93a3dd17c258e235bd45591d9346befb0759ff10cb658e69')
 
 prepare() {
     msg2 "patching libwacom-${_pkgver1}"
