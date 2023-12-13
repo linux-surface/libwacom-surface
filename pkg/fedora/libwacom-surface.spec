@@ -1,20 +1,20 @@
 %global debug_package %{nil}
 
 Name:           libwacom-surface
-Version:        2.8.0
-Release:        2%{?dist}
+Version:        2.9.0
+Release:        1%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
 Provides:       libwacom
 Conflicts:      libwacom
 
-License:        MIT
+License:        HPND
 URL:            https://github.com/linuxwacom/libwacom
 
 Source0:        https://github.com/linuxwacom/libwacom/releases/download/libwacom-%{version}/libwacom-%{version}.tar.xz
 
 BuildRequires:  meson gcc
-BuildRequires:  glib2-devel libgudev1-devel
+BuildRequires:  glib2-devel libgudev1-devel libevdev-devel
 BuildRequires:  systemd systemd-devel
 BuildRequires:  git-core
 BuildRequires:  libxml2-devel
@@ -45,6 +45,16 @@ Conflicts:      libwacom-data
 %description data
 Tablet information client library data files.
 
+%package utils
+Summary:        Tablet Information Client Library Utilities Package
+Requires:       %{name} = %{version}-%{release}
+Requires:       python3-libevdev python3-pyudev
+Provides:       libwacom-utils
+Conflicts:      libwacom-utils
+
+%description utils
+Utilities to handle and/or debug libwacom devices.
+
 %prep
 %autosetup -S git -n libwacom-%{version}
 for p in ../libwacom-surface/v2/*.patch; do
@@ -69,12 +79,9 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %license COPYING
 %doc README.md
 %{_libdir}/libwacom.so.*
-%{_bindir}/libwacom-list-devices
 %{_bindir}/libwacom-list-local-devices
-%{_bindir}/libwacom-show-stylus
 %{_bindir}/libwacom-update-db
 
-%{_mandir}/man1/libwacom-list-devices.1*
 %{_mandir}/man1/libwacom-list-local-devices.1*
 
 %files devel
@@ -94,18 +101,66 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %dir %{_datadir}/libwacom/layouts
 %{_datadir}/libwacom/layouts/*.svg
 
+%files utils
+%{_bindir}/libwacom-list-devices
+%{_bindir}/libwacom-show-stylus
+%{_mandir}/man1/libwacom-list-devices.1*
+
 %changelog
-* Tue Jun 21 2022 Maximilian Luz <luzmaximilian@gmail.com> - 2.3.0-1
+* Wed Dec 13 2023 Maximilian Luz <luzmaximilian@gmail.com> - 2.9.0-1
+- libwacom 2.9.0 surface
+
+* Mon Nov 27 2023 Peter Hutterer <peter.hutterer@redhat.com> - 2.9.0-1
+- libwacom 2.9.0
+
+* Tue Sep 05 2023 Peter Hutterer <peter.hutterer@redhat.com>
+- SPDX migration: update to SPDX identifiers.
+  Turns out the COPYING file references the HPND, not MIT.
+
+* Thu Aug 31 2023 Peter Hutterer <peter.hutterer@redhat.com> - 2.8.0-1
+- libwacom 2.8.0
+
+* Thu Jul 20 2023 Fedora Release Engineering <releng@fedoraproject.org> - 2.7.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
+
+* Wed May 17 2023 Peter Hutterer <peter.hutterer@redhat.com> - 2.7.0-1
+- libwacom 2.7.0
+
+* Mon Jan 23 2023 Peter Hutterer <peter.hutterer@redhat.com> - 2.6.0-1
+- libwacom 2.6.0
+
+* Thu Jan 19 2023 Fedora Release Engineering <releng@fedoraproject.org> - 2.4.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_38_Mass_Rebuild
+
+* Thu Jul 28 2022 Peter Hutterer <peter.hutterer@redhat.com> - 2.4.0-1
+- libwacom 2.4.0
+
+* Thu Jul 21 2022 Fedora Release Engineering <releng@fedoraproject.org> - 2.3.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
+
+* Mon Jun 20 2022 Peter Hutterer <peter.hutterer@redhat.com> - 2.3.0-1
 - libwacom 2.3.0
 
-* Thu Apr 28 2022 Maximilian Luz <luzmaximilian@gmail.com> - 2.2.0-2
-- Re-add accidentally dropped tablet data for Surface Pro 3
+* Fri Mar 25 2022 Peter Hutterer <peter.hutterer@redhat.com> - 2.2.0-1
+- libwacom 2.2.0
 
-* Thu Apr 28 2022 Maximilian Luz <luzmaximilian@gmail.com> - 2.2.0-1
-- Add support for libwacom-2.x
+* Fri Feb 11 2022 Peter Hutterer <peter.hutterer@redhat.com> - 2.1.0-1
+- libwacom 2.1.0
 
-* Mon Jan 17 2022 Peter Hutterer <peter.hutterer@redhat.com> - 1.12.1-1
-- libwacom 1.12.1
+* Mon Jan 31 2022 Peter Hutterer <peter.hutterer@redhat.com> - 2.0.0-3
+- Split utilities into a separate package (#2047568)
+  libwacom-list-local-devices is the most commonly used one so let's leave
+  that in the main package, the others are for debugging so let's move them
+  out.
+
+* Thu Jan 20 2022 Fedora Release Engineering <releng@fedoraproject.org> - 2.0.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
+
+* Mon Jan 17 2022 Peter Hutterer <peter.hutterer@redhat.com> - 2.0.0-1
+- libwacom 2.0.0
+
+* Mon Dec 13 2021 Peter Hutterer <peter.hutterer@redhat.com> - 1.99.1-1
+- libwacom 1.99.1
 
 * Wed Sep 01 2021 Peter Hutterer <peter.hutterer@redhat.com> - 1.12-1
 - libwacom 1.12
@@ -154,6 +209,9 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 
 * Tue Aug 18 2020 Maximilian Luz <luzmaximilian@gmail.com> 1.4.1-2
 - add iptsd support
+
+* Tue Jul 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 1.4.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
 * Tue Jun 30 2020 Peter Hutterer <peter.hutterer@redhat.com> 1.4.1-1
 - libwacom 1.4.1
