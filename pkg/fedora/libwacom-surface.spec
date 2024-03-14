@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           libwacom-surface
-Version:        2.9.0
+Version:        2.10.0
 Release:        1%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
@@ -107,6 +107,12 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %{_mandir}/man1/libwacom-list-devices.1*
 
 %changelog
+* Thu Mar 14 2024 Maximilian Luz <luzmaximilian@gmail.com> - 2.10.0-1
+- libwacom 2.10.0 surface
+
+* Wed Feb 07 2024 Peter Hutterer <peter.hutterer@redhat.com> - 2.10.0-1
+- libwacom 2.10.0 
+
 * Wed Dec 13 2023 Maximilian Luz <luzmaximilian@gmail.com> - 2.9.0-1
 - libwacom 2.9.0 surface
 
