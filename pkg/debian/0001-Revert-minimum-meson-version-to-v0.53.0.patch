@@ -1,0 +1,34 @@
+From d95e1ae36c73d125f1f2574b57fbd1f540c467a5 Mon Sep 17 00:00:00 2001
+From: Maximilian Luz <luzmaximilian@gmail.com>
+Date: Tue, 11 Jun 2024 21:13:08 +0200
+Subject: [PATCH] Revert minimum meson version to v0.53.0
+
+---
+ meson.build | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index c1787b5..0b31e5b 100644
+--- a/meson.build
++++ b/meson.build
+@@ -2,7 +2,7 @@ project('libwacom', 'c',
+ 	version: '2.12.0',
+ 	license: 'HPND',
+ 	default_options: [ 'c_std=gnu99', 'warning_level=2' ],
+-	meson_version: '>= 0.56.0')
++	meson_version: '>= 0.53.0')
+ 
+ dir_bin     = get_option('prefix') / get_option('bindir')
+ dir_data    = get_option('prefix') / get_option('datadir') / 'libwacom'
+@@ -304,7 +304,7 @@ if get_option('tests').enabled()
+ 			     args: ['--verbose',
+ 				     '-rfES',
+ 				     '--log-level=DEBUG',
+-				     '--log-file', meson.project_build_root() / 'meson-logs' / 'pytest.log',
++				     '--log-file', meson.build_root() / 'meson-logs' / 'pytest.log',
+ 				     '--log-file-level=DEBUG',
+ 				     meson.current_source_dir() / 'test' / f,
+ 			     ],
+-- 
+2.45.1
+

@@ -39,6 +39,7 @@ validpgpkeys=(
 source=(
     "https://github.com/linuxwacom/libwacom/releases/download/libwacom-${_pkgver1}/libwacom-${_pkgver1}.tar.bz2"{,.sig}
     "https://github.com/linuxwacom/libwacom/releases/download/libwacom-${_pkgver2}/libwacom-${_pkgver2}.tar.xz"{,.sig}
+    '0001-Revert-minimum-meson-version-to-v0.53.0.patch'
     'v1-0001-Add-support-for-BUS_VIRTUAL.patch'
     'v1-0002-Add-support-for-Intel-Management-Engine-bus.patch'
     'v1-0003-data-Add-Microsoft-Surface-Pro-3.patch'
@@ -76,6 +77,7 @@ sha256sums=('053687f64fdb1c8947cf0e54743c47bfcfba8ef3cb22466a1faa1e2c37ccb315'
             'SKIP'
             '40462434a8568e3c0a75c18a5452aa50e041819363853090c4e7ba7e23a4a180'
             'SKIP'
+            'c6bf372cf0ff9001add9dea672a5c23702bbb697d98dba83a034e52fc2805979'
             'c504893656f851832116616e6e5bd50b3d0ac36f7288042dc7eb50e396212bc4'
             'c64275d8129ed21c58442cda159c90bea6e97813ee91e3911344dd0760a6f35c'
             '279ad2b83cc9d7ee855ee24b5fe952472483b8d4d2f8884b10a9cc12fac7256d'
@@ -112,12 +114,14 @@ sha256sums=('053687f64fdb1c8947cf0e54743c47bfcfba8ef3cb22466a1faa1e2c37ccb315'
 prepare() {
     msg2 "patching libwacom-${_pkgver1}"
     cd "${srcdir}/libwacom-${_pkgver1}"
+    patch -Np1 -i "${srcdir}/0001-Revert-minimum-meson-version-to-v0.53.0.patch" || true
     for p in "${srcdir}/v1-"*.patch ; do
         patch -Np1 -i "${p}" || true
     done
 
     msg2 "patching libwacom-${_pkgver2}"
     cd "${srcdir}/libwacom-${_pkgver2}"
+    patch -Np1 -i "${srcdir}/0001-Revert-minimum-meson-version-to-v0.53.0.patch" || true
     for p in "${srcdir}/v2-"*.patch ; do
         patch -Np1 -i "${p}" || true
     done
