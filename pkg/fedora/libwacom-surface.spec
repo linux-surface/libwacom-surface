@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           libwacom-surface
-Version:        2.12.0
+Version:        2.12.2
 Release:        1%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
