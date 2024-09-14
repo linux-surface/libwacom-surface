@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           libwacom-surface
-Version:        2.12.2
+Version:        2.13.0
 Release:        1%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
@@ -20,6 +20,23 @@ BuildRequires:  git-core
 BuildRequires:  libxml2-devel
 
 Requires:       %{name}-data = %{version}-%{release}
+
+Patch0:         0001-Add-support-for-BUS_VIRTUAL.patch
+Patch1:         0002-Add-support-for-Intel-Management-Engine-bus.patch
+Patch2:         0003-data-Add-Microsoft-Surface-Pro-3.patch
+Patch3:         0004-data-Add-Microsoft-Surface-Pro-4.patch
+Patch4:         0005-data-Add-Microsoft-Surface-Pro-5.patch
+Patch5:         0006-data-Add-Microsoft-Surface-Pro-6.patch
+Patch6:         0007-data-Add-Microsoft-Surface-Pro-7.patch
+Patch7:         0008-data-Add-Microsoft-Surface-Pro-7.patch
+Patch8:         0009-data-Add-Microsoft-Surface-Pro-8.patch
+Patch9:         0010-data-Add-Microsoft-Surface-Pro-9.patch
+Patch10:        0011-data-Add-Microsoft-Surface-Book.patch
+Patch11:        0012-data-Add-Microsoft-Surface-Book-2-13.5.patch
+Patch12:        0013-data-Add-Microsoft-Surface-Book-2-15.patch
+Patch13:        0014-data-Add-Microsoft-Surface-Book-3-13.5.patch
+Patch14:        0015-data-Add-Microsoft-Surface-Book-3-15.patch
+Patch15:        0016-data-Add-Microsoft-Surface-Laptop-Studio.patch
 
 %description
 %{name} is a library that provides information about Wacom tablets and
@@ -57,10 +74,6 @@ Utilities to handle and/or debug libwacom devices.
 
 %prep
 %autosetup -S git -n libwacom-%{version}
-for p in ../libwacom-surface/v2/*.patch; do
-  patch -p1 < "${p}"
-done
-git add . && git commit -q --author 'rpm-build <rpm-build>' -m 'libwacom-surface-%{version} base'
 
 %build
 %meson -Dtests=disabled -Ddocumentation=disabled
@@ -105,8 +118,12 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %{_bindir}/libwacom-list-devices
 %{_bindir}/libwacom-show-stylus
 %{_mandir}/man1/libwacom-list-devices.1*
+%{_mandir}/man1/libwacom-show-stylus.1*
 
 %changelog
+* Sat Sep 14 2024 Maximilian Luz <luzmaximilian@gmail.com> - 2.13.0-1
+- libwacom 2.13.0 surface
+
 * Thu Jun 09 2024 Maximilian Luz <luzmaximilian@gmail.com> - 2.12.0-1
 - libwacom 2.12.0 surface
 

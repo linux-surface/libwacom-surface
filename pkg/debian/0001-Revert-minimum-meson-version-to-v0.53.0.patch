@@ -1,26 +1,34 @@
-From d95e1ae36c73d125f1f2574b57fbd1f540c467a5 Mon Sep 17 00:00:00 2001
+From d6f725da0e037ae900f404fe4bb671582cbd5128 Mon Sep 17 00:00:00 2001
 From: Maximilian Luz <luzmaximilian@gmail.com>
-Date: Tue, 11 Jun 2024 21:13:08 +0200
+Date: Sat, 14 Sep 2024 19:15:21 +0200
 Subject: [PATCH] Revert minimum meson version to v0.53.0
 
 ---
- meson.build | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meson.build | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
 diff --git a/meson.build b/meson.build
-index c1787b5..0b31e5b 100644
+index 58ec3e3..b77f340 100644
 --- a/meson.build
 +++ b/meson.build
 @@ -2,7 +2,7 @@ project('libwacom', 'c',
- 	version: '2.12.0',
+ 	version: '2.13.0',
  	license: 'HPND',
  	default_options: [ 'c_std=gnu99', 'warning_level=2' ],
--	meson_version: '>= 0.56.0')
+-	meson_version: '>= 0.57.0')
 +	meson_version: '>= 0.53.0')
  
- dir_bin     = get_option('prefix') / get_option('bindir')
- dir_data    = get_option('prefix') / get_option('datadir') / 'libwacom'
-@@ -304,7 +304,7 @@ if get_option('tests').enabled()
+ dir_bin      = get_option('prefix') / get_option('bindir')
+ dir_data     = get_option('prefix') / get_option('datadir') / 'libwacom'
+@@ -279,7 +279,6 @@ if get_option('tests').enabled()
+ 	if valgrind.found()
+ 		valgrind_suppressions_file = dir_test / 'valgrind.suppressions'
+ 		add_test_setup('valgrind',
+-			       exclude_suites: ['not-in-valgrind'],
+ 			       exe_wrapper: [valgrind,
+ 					     '--leak-check=full',
+ 					     '--gen-suppressions=all',
+@@ -309,7 +308,7 @@ if get_option('tests').enabled()
  			     args: ['--verbose',
  				     '-rfES',
  				     '--log-level=DEBUG',
@@ -30,5 +38,5 @@ index c1787b5..0b31e5b 100644
  				     meson.current_source_dir() / 'test' / f,
  			     ],
 -- 
-2.45.1
+2.46.0
 
