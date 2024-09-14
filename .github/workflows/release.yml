@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Install build dependencies
       run: |
@@ -75,7 +75,7 @@ jobs:
         mv ./pkg/debian/*.deb release
 
     - name: Upload artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: debian-latest
         path: release
@@ -88,7 +88,7 @@ jobs:
       options: --security-opt seccomp=unconfined
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Install build dependencies
       run: |
@@ -133,7 +133,7 @@ jobs:
         rm release/libwacom-surface-devel-*
 
     - name: Upload artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: fedora-41-latest
         path: pkg/fedora/release
@@ -146,7 +146,7 @@ jobs:
       options: --security-opt seccomp=unconfined
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Install build dependencies
       run: |
@@ -191,7 +191,7 @@ jobs:
         rm release/libwacom-surface-devel-*
 
     - name: Upload artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: fedora-40-latest
         path: pkg/fedora/release
@@ -204,7 +204,7 @@ jobs:
       options: --security-opt seccomp=unconfined
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Install build dependencies
       run: |
@@ -249,7 +249,7 @@ jobs:
         rm release/libwacom-surface-devel-*
 
     - name: Upload artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: fedora-39-latest
         path: pkg/fedora/release
@@ -260,19 +260,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Download Debian artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: debian-latest
         path: debian-latest
 
     - name: Download Fedora 40 artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: fedora-40-latest
         path: fedora-40-latest
 
     - name: Download Fedora 39 artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: fedora-39-latest
         path: fedora-39-latest
@@ -298,7 +298,7 @@ jobs:
         apt-get install -y git
 
     - name: Download artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: debian-latest
         path: debian-latest
@@ -351,7 +351,7 @@ jobs:
         dnf install -y git findutils
 
     - name: Download artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: fedora-41-latest
         path: fedora-41-latest
@@ -404,7 +404,7 @@ jobs:
         dnf install -y git findutils
 
     - name: Download artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: fedora-40-latest
         path: fedora-40-latest
@@ -457,7 +457,7 @@ jobs:
         dnf install -y git findutils
 
     - name: Download artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: fedora-39-latest
         path: fedora-39-latest
