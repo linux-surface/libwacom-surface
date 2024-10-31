@@ -265,6 +265,12 @@ jobs:
         name: debian-latest
         path: debian-latest
 
+    - name: Download Fedora 41 artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: fedora-41-latest
+        path: fedora-41-latest
+
     - name: Download Fedora 40 artifacts
       uses: actions/download-artifact@v4
       with:
