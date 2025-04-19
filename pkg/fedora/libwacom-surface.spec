@@ -1,8 +1,8 @@
 %global debug_package %{nil}
 
 Name:           libwacom-surface
-Version:        2.13.0
-Release:        2%{?dist}
+Version:        2.15.0
+Release:        1%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
 Provides:       libwacom
@@ -121,20 +121,44 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %{_mandir}/man1/libwacom-show-stylus.1*
 
 %changelog
-* Sat Sep 14 2024 Maximilian Luz <luzmaximilian@gmail.com> - 2.13.0-1
-- libwacom 2.13.0 surface
+* Sat Apr 20 2025 Maximilian Luz <luzmaximilian@gmail.com> - 2.15.0-1
+- libwacom-surface 2.15.0
 
-* Thu Jun 09 2024 Maximilian Luz <luzmaximilian@gmail.com> - 2.12.0-1
-- libwacom 2.12.0 surface
+* Fri Mar 21 2025 Peter Hutterer <peter.hutterer@redhat.com> - 2.15.0-1
+- libwacom 2.15.0
 
-* Thu Mar 14 2024 Maximilian Luz <luzmaximilian@gmail.com> - 2.10.0-1
-- libwacom 2.10.0 surface
+* Mon Jan 20 2025 Fedora Release Engineering <releng@fedoraproject.org> - 2.14.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild
+
+* Thu Dec 05 2024 Peter Hutterer <peter.hutterer@redhat.com> - 2.14.0-1
+- libwacom 2.14.0
+
+* Mon Sep 02 2024 Peter Hutterer <peter.hutterer@redhat.com> - 2.13.0-1
+- libwacom 2.13.0
+
+* Thu Jul 18 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.12.2-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
+
+* Fri Jun 21 2024 Peter Hutterer <peter.hutterer@redhat.com> - 2.12.2-1
+- libwacom 2.12.2
+
+* Thu Jun 13 2024 Stephen Gallagher <sgallagh@redhat.com> - 2.12.1-2
+- Fix typo in Release field
+
+* Wed Jun 12 2024 Peter Hutterer <peter.hutterer@redhat.com> 2.12.1-1
+- libwacom 2.12.1
+
+* Thu Jun 06 2024 Peter Hutterer <peter.hutterer@redhat.com> 2.12.0-1
+- libwacom 2.12
 
 * Wed Feb 07 2024 Peter Hutterer <peter.hutterer@redhat.com> - 2.10.0-1
-- libwacom 2.10.0 
+- libwacom 2.10.0
 
-* Wed Dec 13 2023 Maximilian Luz <luzmaximilian@gmail.com> - 2.9.0-1
-- libwacom 2.9.0 surface
+* Thu Jan 25 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.9.0-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
+
+* Sun Jan 21 2024 Fedora Release Engineering <releng@fedoraproject.org> - 2.9.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
 
 * Mon Nov 27 2023 Peter Hutterer <peter.hutterer@redhat.com> - 2.9.0-1
 - libwacom 2.9.0

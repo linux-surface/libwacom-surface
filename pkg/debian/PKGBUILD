@@ -10,9 +10,9 @@ pkgname=(
     libwacom-surface
 )
 _pkgver1=1.12.1
-_pkgver2=2.13.0
-pkgver=2.13.0
-pkgrel=2
+_pkgver2=2.15.0
+pkgver=2.15.0
+pkgrel=1
 pkgdesc="Patched libwacom for Microsoft Surface devices"
 arch=('amd64')
 url="https://github.com/linux-surface/libwacom"
@@ -75,9 +75,9 @@ source=(
 )
 sha256sums=('053687f64fdb1c8947cf0e54743c47bfcfba8ef3cb22466a1faa1e2c37ccb315'
             'SKIP'
-            'acd18121441bbc00fc5c881fca08a33319ab814b798eac8d0be6354923f8fb08'
+            '20cd65b1693129c3a6c003db0fe7fff7eccaf19fb04e89aaad9c20eb2151515a'
             'SKIP'
-            '53b91d9e85d3542181873940cc9cf72ec042ae575cc23904fb49f4ee8a63933c'
+            '407173c31fff8255d495ae888954f6d8a97c686efe2b120e7313e24d6963a7b5'
             'c504893656f851832116616e6e5bd50b3d0ac36f7288042dc7eb50e396212bc4'
             'c64275d8129ed21c58442cda159c90bea6e97813ee91e3911344dd0760a6f35c'
             '279ad2b83cc9d7ee855ee24b5fe952472483b8d4d2f8884b10a9cc12fac7256d'
@@ -94,22 +94,22 @@ sha256sums=('053687f64fdb1c8947cf0e54743c47bfcfba8ef3cb22466a1faa1e2c37ccb315'
             '3113ca84ad91f05a5c7f5076e3802ed6c8cd3805ea6bb8cd60c44d0cfe234ced'
             '554b6f6bd1f283094daf8911dfc288b4f88f3ae9e63cd450bb24fef89fc07d5a'
             'e780cf1f85edb37a675109574873d671ccc4e9bbac191e8f9685a4a1a79ced0c'
-            '696164b851014a204cb42dcee0b04e98680df4154494454aed499e1928811668'
-            'd7ba3b1fa5d29d3905be5bc6b70bb351afebd1343b57ca8b213af1279b7ded49'
-            'cf8051976e8c2a52484cb66e9aba57dffef234931d879bd33704b9012656b517'
-            'f8b1dbff6cd13e7da6bfa5dc6b009f19588c8fccaff1d262960b0345604ecc9a'
-            '13bbaafb309cd900e8d9292955075521390849933fd6d8481ea34ac9b992f909'
-            '09d92bec44dadf9655d881dbb0c71edd32c5a897c40bd9edf13314c5c8ac46d2'
-            '29a7da851ea01ea1ff5403318a40c4da5f8ab842cbffa221891a2d68f17d5ee7'
-            '6360efe22f06676396adccdf48ed66349aa47a595bebcfab4a8ff04eee8537bf'
-            '93b04852ad3e1441e1c49541227c188d1dbf23ebeab94ba26d36e29818b0cf59'
-            '46cf653beb245639cc7044a5c03a1a654d5072d8ab6d9d1aebe9810fdc2f2393'
-            'a32dcf496234bbb960f519cfa49127bdb15de9d3aa965c40e4ec9ea561d55eb1'
-            '0b14ea69e7038169d309618a5767bfc2de2b5895e1bcc8ec4c4b606466835524'
-            '5787ed06c0c0c5b099666927b232fc4299bd9589c3971f3affb00b982356753a'
-            'df9a4d9cb980dff8644e8e5070e396079397fac4a941cdbf5417742842f9c7f1'
-            '6baf29f63a1d7366ee6b9a8ca11359eb57cac9fcaf276caa3e7ac9e29fcbefce'
-            '77afbd2151461fb0a4e3353a3c7e3af7ec37dbdaf0edd519d69e1894ccecaa0d')
+            '130ae6573afba8b8e10d93ad1472eb03dc6679c5ada83c1f152f945dcf20628f'
+            '32d0dc194807625d3cd600115d5ebf68dc9fd06bb5c2762c1271e744b7efdeff'
+            'c33504182e4e5e485e875aa033e0b2bc0b801193b04d1e06edc2d8bcb4bce130'
+            '2fc98f9076f0eeadef92fd25f63a5aebb84e46a2242d6b1596a2ea86d71e0413'
+            'b4db615431bf56deb0e3c2eb5c8bdf0561e2477a2f89070119243a91ab63c488'
+            'def78a40a904620874ae215850b5014f5d3e11c6711f9aeaa810f3fdcd2d7417'
+            'b18192b5a5f753ffa7362011250595d1f2040e443a67f7e51abdec8f4e30e97f'
+            'cef221f124c7f247b68fafb473c9d9056fa440f774ae70ee70bc9316f7b1ccd7'
+            '588474c2b84b41e0523a8cab2e2bb86445f3adf7413f25d522722ff2babfd309'
+            '320fb066c06fc263d85d904a5ad21bb98a1cf1d2805cdda528f55498e0f30ef9'
+            'beb9688e618bcb07825aa2afc0ee7164736daaeae611c78f2f0461b6dc268cac'
+            '5a4435a76396c330265f8df7ac38d01ec9bbea27dfc937b53021feac8cb96d2e'
+            '413105054c92db3855bf45e4f26861b769c4b516cea1e7a0dc5675253bad15bd'
+            'a86d2c15c94229699b5712bca5d6a960883c8c1bae1f23246aba1f1d72d78b45'
+            'b3d51525a0fd8e406f92691ab8312dc3493a2d158b944ff5f9037531c90eaf6e'
+            'd1c07256c1d5216aed2aa061d1c5026371c7ebabf96b62cad487d4160fb1fafd')
 
 prepare() {
     msg2 "patching libwacom-${_pkgver1}"

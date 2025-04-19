@@ -1,18 +1,18 @@
-From d6f725da0e037ae900f404fe4bb671582cbd5128 Mon Sep 17 00:00:00 2001
+From 0a3607ec69b30faa827e48b00f455285f251a005 Mon Sep 17 00:00:00 2001
 From: Maximilian Luz <luzmaximilian@gmail.com>
-Date: Sat, 14 Sep 2024 19:15:21 +0200
+Date: Sun, 20 Apr 2025 00:21:02 +0200
 Subject: [PATCH] Revert minimum meson version to v0.53.0
 
 ---
- meson.build | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ meson.build | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
 diff --git a/meson.build b/meson.build
-index 58ec3e3..b77f340 100644
+index 7afec64c..048a876f 100644
 --- a/meson.build
 +++ b/meson.build
 @@ -2,7 +2,7 @@ project('libwacom', 'c',
- 	version: '2.13.0',
+ 	version: '2.15.0',
  	license: 'HPND',
  	default_options: [ 'c_std=gnu99', 'warning_level=2' ],
 -	meson_version: '>= 0.57.0')
@@ -20,7 +20,16 @@ index 58ec3e3..b77f340 100644
  
  dir_bin      = get_option('prefix') / get_option('bindir')
  dir_data     = get_option('prefix') / get_option('datadir') / 'libwacom'
-@@ -279,7 +279,6 @@ if get_option('tests').enabled()
+@@ -179,7 +179,7 @@ testdevices = {
+ }
+ foreach name : testdevices.keys()
+ 	match = testdevices[name]
+-	test(f'debug-device-@name@',
++	test('debug-device-@0@'.format(name),
+ 	debug_device,
+ 	args: [match],
+ 	suite: ['all'])
+@@ -295,7 +295,6 @@ if get_option('tests').enabled()
  	if valgrind.found()
  		valgrind_suppressions_file = dir_test / 'valgrind.suppressions'
  		add_test_setup('valgrind',
@@ -28,7 +37,7 @@ index 58ec3e3..b77f340 100644
  			       exe_wrapper: [valgrind,
  					     '--leak-check=full',
  					     '--gen-suppressions=all',
-@@ -309,7 +308,7 @@ if get_option('tests').enabled()
+@@ -325,7 +324,7 @@ if get_option('tests').enabled()
  			     args: ['--verbose',
  				     '-rfES',
  				     '--log-level=DEBUG',
@@ -38,5 +47,5 @@ index 58ec3e3..b77f340 100644
  				     meson.current_source_dir() / 'test' / f,
  			     ],
 -- 
-2.46.0
+2.49.0
 
