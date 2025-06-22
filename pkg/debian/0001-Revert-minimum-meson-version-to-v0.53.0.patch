@@ -1,4 +1,4 @@
-From 0a3607ec69b30faa827e48b00f455285f251a005 Mon Sep 17 00:00:00 2001
+From 7fe5e50ac7fcd08e042d8221bb9c479c3c280d3e Mon Sep 17 00:00:00 2001
 From: Maximilian Luz <luzmaximilian@gmail.com>
 Date: Sun, 20 Apr 2025 00:21:02 +0200
 Subject: [PATCH] Revert minimum meson version to v0.53.0
@@ -8,11 +8,11 @@ Subject: [PATCH] Revert minimum meson version to v0.53.0
  1 file changed, 3 insertions(+), 4 deletions(-)
 
 diff --git a/meson.build b/meson.build
-index 7afec64c..048a876f 100644
+index 9c0b1fbc..8a1de43c 100644
 --- a/meson.build
 +++ b/meson.build
 @@ -2,7 +2,7 @@ project('libwacom', 'c',
- 	version: '2.15.0',
+ 	version: '2.16.1',
  	license: 'HPND',
  	default_options: [ 'c_std=gnu99', 'warning_level=2' ],
 -	meson_version: '>= 0.57.0')
@@ -47,5 +47,5 @@ index 7afec64c..048a876f 100644
  				     meson.current_source_dir() / 'test' / f,
  			     ],
 -- 
-2.49.0
+2.50.0
 

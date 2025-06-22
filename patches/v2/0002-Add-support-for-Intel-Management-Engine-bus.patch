@@ -1,4 +1,4 @@
-From 2f55d3df2ef4908bc09ee3349793192acbb2042e Mon Sep 17 00:00:00 2001
+From 499d865ff2cd575746ed2f971d84e6d5248a92d0 Mon Sep 17 00:00:00 2001
 From: Maximilian Luz <luzmaximilian@gmail.com>
 Date: Sat, 1 Jun 2019 21:17:15 +0200
 Subject: [PATCH 02/16] Add support for Intel Management Engine bus
@@ -16,7 +16,7 @@ the Microsoft Surface Books, Surface Pro 5 and 6, and Surface Laptops.
  6 files changed, 13 insertions(+)
 
 diff --git a/libwacom/libwacom-database.c b/libwacom/libwacom-database.c
-index a6cd54b4..2883bccb 100644
+index 2c203a10..0c02cfd2 100644
 --- a/libwacom/libwacom-database.c
 +++ b/libwacom/libwacom-database.c
 @@ -176,6 +176,8 @@ bus_from_str (const char *str)
@@ -38,7 +38,7 @@ index a6cd54b4..2883bccb 100644
  	g_assert_not_reached ();
  }
 diff --git a/libwacom/libwacom.c b/libwacom/libwacom.c
-index fac97e65..17f8607d 100644
+index 42bec181..a906e930 100644
 --- a/libwacom/libwacom.c
 +++ b/libwacom/libwacom.c
 @@ -157,6 +157,10 @@ get_bus_vid_pid (GUdevDevice  *device,
@@ -52,7 +52,7 @@ index fac97e65..17f8607d 100644
  	}
  
  out:
-@@ -1037,6 +1041,7 @@ static void print_match(int fd, const WacomMatch *match)
+@@ -1014,6 +1018,7 @@ static void print_match(int fd, const WacomMatch *match)
  		case WBUSTYPE_SERIAL:		bus_name = "serial";	break;
  		case WBUSTYPE_I2C:		bus_name = "i2c";	break;
  		case WBUSTYPE_VIRTUAL:		bus_name = "virt";	break;
@@ -73,7 +73,7 @@ index 17dd7600..798a31dd 100644
  
  /**
 diff --git a/test/test-tablet-validity.c b/test/test-tablet-validity.c
-index 77ff1327..ad350912 100644
+index 4bc09b88..bd7160b2 100644
 --- a/test/test-tablet-validity.c
 +++ b/test/test-tablet-validity.c
 @@ -178,6 +178,7 @@ assert_vidpid(WacomBusType bus, int vid, int pid)
@@ -97,10 +97,10 @@ index ee6ffcd3..bd7d798f 100755
          assert re.match("[0-9a-f]{4}", vid), (
              f"{tabletfile}: {vid} must be lowercase hex"
 diff --git a/tools/debug-device.c b/tools/debug-device.c
-index 286e9148..f5b17b56 100644
+index 0c4efe06..e36a5208 100644
 --- a/tools/debug-device.c
 +++ b/tools/debug-device.c
-@@ -178,6 +178,7 @@ handle_device(WacomDeviceDatabase *db, const char *path)
+@@ -177,6 +177,7 @@ handle_device(WacomDeviceDatabase *db, const char *path)
  			case WBUSTYPE_BLUETOOTH: busstr = "BLUETOOTH"; break;
  			case WBUSTYPE_I2C: busstr = "I2C"; break;
  			case WBUSTYPE_VIRTUAL: busstr = "VIRTUAL"; break;
@@ -109,5 +109,5 @@ index 286e9148..f5b17b56 100644
  		func(libwacom_get_bustype, "%s", busstr);
  	}
 -- 
-2.49.0
+2.50.0
 
