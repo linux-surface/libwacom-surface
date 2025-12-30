@@ -18,7 +18,7 @@ jobs:
         echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
         sed 's/^deb /deb-src /' /etc/apt/sources.list >> /etc/apt/sources.list
         apt-get -q -y update
-        apt-get -q -y install build-essential debhelper dpkg-sig fakeroot wget git meson \
+        apt-get -q -y install build-essential debhelper debsigs fakeroot wget git meson \
             python3-pyudev python3-pytest python3-libevdev ninja-build patch gpg cmake \
             libevdev-dev
         apt-get -q -y build-dep libwacom libwacom-dev
@@ -38,7 +38,7 @@ jobs:
         # Build packages using dpkg-buildpackage
         ./pkg/deb/makedeb
 
-    - name: Sign package
+    - name: Sign packages
       env:
         GPG_KEY_ID: 56C464BAAC421453
         GPG_KEY: ${{ secrets.LINUX_SURFACE_GPG_KEY }}
@@ -49,8 +49,10 @@ jobs:
         echo "$GPG_KEY" | base64 -d | gpg --import --no-tty --batch --yes
         export GPG_TTY=$(tty)
 
-        # sign package
-        dpkg-sig -g "--batch --no-tty" --sign builder -k $GPG_KEY_ID ./*.deb
+        # sign packages
+        for deb in *.deb; do
+          debsigs --sign=origin -k $GPG_KEY_ID "$deb"
+        done
 
     - name: Prepare release
       run: |
