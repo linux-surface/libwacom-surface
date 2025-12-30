@@ -13,53 +13,37 @@ jobs:
     container: ubuntu:22.04
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
     - name: Install build dependencies
       run: |
         echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
         sed 's/^deb /deb-src /' /etc/apt/sources.list >> /etc/apt/sources.list
         apt-get -q -y update
         apt-get -q -y install build-essential debhelper dpkg-sig fakeroot wget git meson \
-            python3-pyudev python3-pytest python3-libevdev sudo gpg
+            python3-pyudev python3-pytest python3-libevdev ninja-build patch gpg cmake \
+            libevdev-dev
         apt-get -q -y build-dep libwacom libwacom-dev
 
-        # makedeb
-        wget -qO - 'https://proget.makedeb.org/debian-feeds/makedeb.pub' \
-          | gpg --dearmor \
-          | sudo tee /usr/share/keyrings/makedeb-archive-keyring.gpg 1> /dev/null
-
-        echo 'deb [signed-by=/usr/share/keyrings/makedeb-archive-keyring.gpg arch=all] https://proget.makedeb.org/ makedeb main' \
-          | sudo tee /etc/apt/sources.list.d/makedeb.list
-
-        sudo apt update
-
-        apt-get -q -y update
-        apt-get -q -y install makedeb
+    - name: Checkout code
+      uses: actions/checkout@v4
 
     - name: Build package
       run: |
-        cd pkg/debian
-        ./updlinks.sh
+        # Import GPG keys for libwacom/Peter Hutterer
+        gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys 3C2C43D9447D5938EF4551EBE23B7E70B467F0BF || true
+        gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys 594ABBA066118C7A02D10A80A8AF906D9307FBAD || true
 
-        # Fix permissions (can't makepkg as root)
-        useradd -m build
-        echo "build ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-        chown -R build .
+        # Set as safe directory for git
+        git config --global --add safe.directory "$PWD"
 
-        # Import GPG key for liwbacom/Peter Hutterer
-        su build --pty -s /bin/bash -c 'gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys 3C2C43D9447D5938EF4551EBE23B7E70B467F0BF'
-
-        # build package
-        su build --pty -s /bin/bash -c 'makedeb --sync-deps --no-confirm --skip-pgp-check'
+        # Build packages using dpkg-buildpackage
+        ./pkg/deb/makedeb
 
     - name: Sign package
       env:
         GPG_KEY_ID: 56C464BAAC421453
         GPG_KEY: ${{ secrets.LINUX_SURFACE_GPG_KEY }}
       run: |
-        cd pkg/debian
+        cd pkg/deb
 
         # import GPG key
         echo "$GPG_KEY" | base64 -d | gpg --import --no-tty --batch --yes
@@ -71,8 +55,8 @@ jobs:
     - name: Prepare release
       run: |
         mkdir release
-        rm -f ./pkg/debian/libwacom-surface-dbgsym_*.deb || true
-        mv ./pkg/debian/*.deb release
+        rm -f ./pkg/deb/*-dbgsym_*.ddeb || true
+        mv ./pkg/deb/*.deb release
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4

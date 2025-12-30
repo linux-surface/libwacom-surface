@@ -1,0 +1,110 @@
+#!/usr/bin/make -f
+export DH_VERBOSE = 1
+export DEB_BUILD_OPTIONS = noautodbgsym
+
+LIBWACOM_V1 = 1.12.1
+LIBWACOM_V2 = 2.17.0
+
+SRC_V1 = libwacom-$(LIBWACOM_V1)
+SRC_V2 = libwacom-$(LIBWACOM_V2)
+
+URL_V1 = https://github.com/linuxwacom/libwacom/releases/download/libwacom-$(LIBWACOM_V1)/libwacom-$(LIBWACOM_V1).tar.bz2
+URL_V2 = https://github.com/linuxwacom/libwacom/releases/download/libwacom-$(LIBWACOM_V2)/libwacom-$(LIBWACOM_V2).tar.xz
+
+PATCHES_V1 = $(wildcard ../../patches/v1/*.patch)
+PATCHES_V2 = $(wildcard ../../patches/v2/*.patch)
+
+clean:
+	dh clean
+	rm -rf $(SRC_V1) $(SRC_V2)
+	rm -f $(SRC_V1).tar.bz2 $(SRC_V2).tar.xz
+
+build:
+	dh build
+
+	# Download and extract v1
+	test -f $(SRC_V1).tar.bz2 || wget -O $(SRC_V1).tar.bz2 $(URL_V1)
+	test -d $(SRC_V1) || tar -xjf $(SRC_V1).tar.bz2
+
+	# Download and extract v2
+	test -f $(SRC_V2).tar.xz || wget -O $(SRC_V2).tar.xz $(URL_V2)
+	test -d $(SRC_V2) || tar -xJf $(SRC_V2).tar.xz
+
+	# Patch v1
+	cd $(SRC_V1) && \
+		(patch -Np1 < ../debian/patches/0001-Revert-minimum-meson-version-to-v0.53.0.patch || true) && \
+		for p in $(PATCHES_V1); do \
+			patch -Np1 < $$p || true; \
+		done
+
+	# Patch v2
+	cd $(SRC_V2) && \
+		(patch -Np1 < ../debian/patches/0001-Revert-minimum-meson-version-to-v0.53.0.patch || true) && \
+		for p in $(PATCHES_V2); do \
+			patch -Np1 < $$p || true; \
+		done
+
+	# Build v1
+	cd $(SRC_V1) && \
+		meson build . --prefix=/usr && \
+		ninja -C build
+
+	# Build v2
+	cd $(SRC_V2) && \
+		meson build . --prefix=/usr && \
+		ninja -C build
+
+override_dh_auto_install:
+	# Install libwacom2-surface (v1 library only)
+	cd $(SRC_V1) && DESTDIR=$(CURDIR)/debian/libwacom2-surface ninja install -C build
+	rm -rf debian/libwacom2-surface/usr/bin
+	rm -rf debian/libwacom2-surface/usr/include
+	rm -rf debian/libwacom2-surface/usr/lib/udev
+	rm -rf debian/libwacom2-surface/usr/lib/x86_64-linux-gnu/pkgconfig
+	rm -rf debian/libwacom2-surface/usr/lib/x86_64-linux-gnu/libwacom.so
+	rm -rf debian/libwacom2-surface/usr/share
+	install -D -m644 $(SRC_V1)/COPYING debian/libwacom2-surface/usr/share/doc/libwacom2-surface/copyright
+
+	# Install libwacom2-dev-surface (v1 dev files only)
+	cd $(SRC_V1) && DESTDIR=$(CURDIR)/debian/libwacom2-dev-surface ninja install -C build
+	rm -rf debian/libwacom2-dev-surface/usr/bin
+	rm -rf debian/libwacom2-dev-surface/usr/lib/udev
+	rm -rf debian/libwacom2-dev-surface/usr/lib/x86_64-linux-gnu/libwacom.so.*
+	rm -rf debian/libwacom2-dev-surface/usr/share
+	install -D -m644 $(SRC_V1)/COPYING debian/libwacom2-dev-surface/usr/share/doc/libwacom2-dev-surface/copyright
+
+	# Install libwacom9-surface (v2 library only)
+	cd $(SRC_V2) && DESTDIR=$(CURDIR)/debian/libwacom9-surface ninja install -C build
+	rm -rf debian/libwacom9-surface/usr/bin
+	rm -rf debian/libwacom9-surface/usr/include
+	rm -rf debian/libwacom9-surface/usr/lib/udev
+	rm -rf debian/libwacom9-surface/usr/lib/x86_64-linux-gnu/pkgconfig
+	rm -rf debian/libwacom9-surface/usr/lib/x86_64-linux-gnu/libwacom.so
+	rm -rf debian/libwacom9-surface/usr/share
+	install -D -m644 $(SRC_V2)/COPYING debian/libwacom9-surface/usr/share/doc/libwacom9-surface/copyright
+
+	# Install libwacom9-dev-surface (v2 dev files only)
+	cd $(SRC_V2) && DESTDIR=$(CURDIR)/debian/libwacom9-dev-surface ninja install -C build
+	rm -rf debian/libwacom9-dev-surface/usr/bin
+	rm -rf debian/libwacom9-dev-surface/usr/lib/udev
+	rm -rf debian/libwacom9-dev-surface/usr/lib/x86_64-linux-gnu/libwacom.so.*
+	rm -rf debian/libwacom9-dev-surface/usr/share
+	install -D -m644 $(SRC_V2)/COPYING debian/libwacom9-dev-surface/usr/share/doc/libwacom9-dev-surface/copyright
+
+	# Install libwacom-bin-surface (v2 utilities)
+	cd $(SRC_V2) && DESTDIR=$(CURDIR)/debian/libwacom-bin-surface ninja install -C build
+	rm -rf debian/libwacom-bin-surface/usr/include
+	rm -rf debian/libwacom-bin-surface/usr/lib
+	rm -rf debian/libwacom-bin-surface/usr/share/libwacom
+	install -D -m644 $(SRC_V2)/COPYING debian/libwacom-bin-surface/usr/share/doc/libwacom-bin-surface/copyright
+
+	# Install libwacom-common-surface (v2 data files)
+	cd $(SRC_V2) && DESTDIR=$(CURDIR)/debian/libwacom-common-surface ninja install -C build
+	rm -rf debian/libwacom-common-surface/usr/bin
+	rm -rf debian/libwacom-common-surface/usr/include
+	rm -rf debian/libwacom-common-surface/usr/lib/x86_64-linux-gnu
+	rm -rf debian/libwacom-common-surface/usr/share/man
+	install -D -m644 $(SRC_V2)/COPYING debian/libwacom-common-surface/usr/share/doc/libwacom-common-surface/copyright
+
+%:
+	dh $@

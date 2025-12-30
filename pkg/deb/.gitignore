@@ -1,0 +1,7 @@
+*.deb
+*.build
+*.buildinfo
+*.changes
+*.tar
+libwacom-*/
+src/

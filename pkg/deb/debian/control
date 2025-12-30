@@ -1,0 +1,128 @@
+Source: libwacom-surface
+Section: libs
+Priority: optional
+Maintainer: Maximilian Luz <luzmaximilian@gmail.com>
+Build-Depends: build-essential,
+               debhelper (>= 10),
+               meson,
+               ninja-build,
+               libglib2.0-dev,
+               libgudev-1.0-dev,
+               libxml2-dev,
+               libevdev-dev,
+               udev,
+               wget,
+               patch,
+               python3-libevdev,
+               python3-pytest,
+               python3-pyudev
+
+Package: libwacom2-surface
+Architecture: amd64
+Depends: ${shlibs:Depends}, ${misc:Depends},
+         libglib2.0-0,
+         libgudev-1.0-0,
+         systemd,
+         libwacom-common-surface (= ${binary:Version})
+Conflicts: libwacom2
+Provides: libwacom2 (= 1.12.1-1)
+Description: Wacom model feature query library (patched for Surface devices)
+ libwacom is a library to identify wacom tablets and their model-specific
+ features. It provides easy access to information such as "is this a
+ built-in on-screen tablet", "what is the size of this model", etc.
+ .
+ This package contains the library for libwacom 1.x series, patched to
+ support Microsoft Surface devices.
+
+Package: libwacom2-dev-surface
+Section: libdevel
+Architecture: amd64
+Depends: ${misc:Depends},
+         libglib2.0-dev,
+         libgudev-1.0-dev,
+         libwacom2-surface (= ${binary:Version})
+Conflicts: libwacom-dev, libwacom9-dev-surface
+Provides: libwacom-dev (= 1.12.1-1)
+Description: Wacom model feature query library (development files)
+ libwacom is a library to identify wacom tablets and their model-specific
+ features. It provides easy access to information such as "is this a
+ built-in on-screen tablet", "what is the size of this model", etc.
+ .
+ This package contains the development files for libwacom 1.x series.
+
+Package: libwacom9-surface
+Architecture: amd64
+Depends: ${shlibs:Depends}, ${misc:Depends},
+         libglib2.0-0,
+         libgudev-1.0-0,
+         systemd,
+         libwacom-common-surface (= ${binary:Version})
+Conflicts: libwacom9
+Provides: libwacom9 (= 2.17.0-1)
+Description: Wacom model feature query library (patched for Surface devices)
+ libwacom is a library to identify wacom tablets and their model-specific
+ features. It provides easy access to information such as "is this a
+ built-in on-screen tablet", "what is the size of this model", etc.
+ .
+ This package contains the library for libwacom 2.x series, patched to
+ support Microsoft Surface devices.
+
+Package: libwacom9-dev-surface
+Section: libdevel
+Architecture: amd64
+Depends: ${misc:Depends},
+         libglib2.0-dev,
+         libgudev-1.0-dev,
+         libwacom9-surface (= ${binary:Version})
+Conflicts: libwacom-dev, libwacom2-dev-surface
+Provides: libwacom-dev (= 2.17.0-1)
+Description: Wacom model feature query library (development files)
+ libwacom is a library to identify wacom tablets and their model-specific
+ features. It provides easy access to information such as "is this a
+ built-in on-screen tablet", "what is the size of this model", etc.
+ .
+ This package contains the development files for libwacom 2.x series.
+
+Package: libwacom-common-surface
+Architecture: all
+Depends: ${misc:Depends}
+Conflicts: libwacom-common
+Provides: libwacom-common (= 2.17.0-1)
+Description: Wacom model feature query library (common data files)
+ libwacom is a library to identify wacom tablets and their model-specific
+ features. It provides easy access to information such as "is this a
+ built-in on-screen tablet", "what is the size of this model", etc.
+ .
+ This package contains common data files for libwacom, patched to support
+ Microsoft Surface devices.
+
+Package: libwacom-bin-surface
+Architecture: amd64
+Depends: ${shlibs:Depends}, ${misc:Depends},
+         libglib2.0-0,
+         libgudev-1.0-0,
+         systemd,
+         libwacom9-surface (= ${binary:Version})
+Conflicts: libwacom-bin
+Provides: libwacom-bin (= 2.17.0-1)
+Description: Wacom model feature query library (utilities)
+ libwacom is a library to identify wacom tablets and their model-specific
+ features. It provides easy access to information such as "is this a
+ built-in on-screen tablet", "what is the size of this model", etc.
+ .
+ This package contains utilities for libwacom.
+
+Package: libwacom-surface
+Architecture: amd64
+Depends: ${misc:Depends},
+         libwacom2-surface (= ${binary:Version}),
+         libwacom9-surface (= ${binary:Version}),
+         libwacom-bin-surface (= ${binary:Version}),
+         libwacom-common-surface (= ${binary:Version})
+Description: Wacom model feature query library (metapackage for Surface devices)
+ libwacom is a library to identify wacom tablets and their model-specific
+ features. It provides easy access to information such as "is this a
+ built-in on-screen tablet", "what is the size of this model", etc.
+ .
+ This metapackage depends on all libwacom packages patched for Microsoft
+ Surface devices.
