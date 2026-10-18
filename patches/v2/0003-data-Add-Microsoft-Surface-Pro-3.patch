@@ -1,4 +1,4 @@
-From f24a2cafee7a356b82377d7c8fffdb0931df959c Mon Sep 17 00:00:00 2001
+From 52df5cd3f39f2ede1f0e53965476079127f9d1b8 Mon Sep 17 00:00:00 2001
 From: "Antony Jordan (Tablet)" <wiccan.two@gmail.com>
 Date: Wed, 8 Jun 2022 22:03:33 +0200
 Subject: [PATCH 03/16] data: Add Microsoft Surface Pro 3
@@ -10,7 +10,7 @@ Subject: [PATCH 03/16] data: Add Microsoft Surface Pro 3
 
 diff --git a/data/surface-pro3.tablet b/data/surface-pro3.tablet
 new file mode 100644
-index 00000000..2f535410
+index 00000000..7fb5db69
 --- /dev/null
 +++ b/data/surface-pro3.tablet
 @@ -0,0 +1,14 @@
@@ -20,8 +20,8 @@ index 00000000..2f535410
 +Name=Microsoft Surface Pro 3
 +Class=PenDisplay
 +DeviceMatch=i2c|1b96|1b05
-+Width=10
-+Height=6
++Width=254
++Height=169
 +IntegratedIn=Display;System;
 +
 +[Features]
@@ -29,5 +29,5 @@ index 00000000..2f535410
 +Touch=true
 +Buttons=0
 -- 
-2.52.0
+2.56.0
 

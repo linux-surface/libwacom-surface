@@ -58,7 +58,7 @@ Depends: ${shlibs:Depends}, ${misc:Depends},
          systemd,
          libwacom-common-surface (= ${binary:Version})
 Conflicts: libwacom9
-Provides: libwacom9 (= 2.17.0-1)
+Provides: libwacom9 (= 2.20.0-1)
 Description: Wacom model feature query library (patched for Surface devices)
  libwacom is a library to identify wacom tablets and their model-specific
  features. It provides easy access to information such as "is this a
@@ -75,7 +75,7 @@ Depends: ${misc:Depends},
          libgudev-1.0-dev,
          libwacom9-surface (= ${binary:Version})
 Conflicts: libwacom-dev, libwacom2-dev-surface
-Provides: libwacom-dev (= 2.17.0-1)
+Provides: libwacom-dev (= 2.20.0-1)
 Description: Wacom model feature query library (development files)
  libwacom is a library to identify wacom tablets and their model-specific
  features. It provides easy access to information such as "is this a
@@ -87,7 +87,7 @@ Package: libwacom-common-surface
 Architecture: all
 Depends: ${misc:Depends}
 Conflicts: libwacom-common
-Provides: libwacom-common (= 2.17.0-1)
+Provides: libwacom-common (= 2.20.0-1)
 Description: Wacom model feature query library (common data files)
  libwacom is a library to identify wacom tablets and their model-specific
  features. It provides easy access to information such as "is this a
@@ -104,7 +104,7 @@ Depends: ${shlibs:Depends}, ${misc:Depends},
          systemd,
          libwacom9-surface (= ${binary:Version})
 Conflicts: libwacom-bin
-Provides: libwacom-bin (= 2.17.0-1)
+Provides: libwacom-bin (= 2.20.0-1)
 Description: Wacom model feature query library (utilities)
  libwacom is a library to identify wacom tablets and their model-specific
  features. It provides easy access to information such as "is this a

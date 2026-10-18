@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           libwacom-surface
-Version:        2.17.0
+Version:        2.20.0
 Release:        1%{?dist}
 Summary:        Tablet Information Client Library
 Requires:       %{name}-data
@@ -121,6 +121,9 @@ install -d ${RPM_BUILD_ROOT}/%{_udevrulesdir}
 %{_mandir}/man1/libwacom-show-stylus.1*
 
 %changelog
+* Sun Oct 18 2026 Maximilian Luz <luzmaximilian@gmail.com> - 2.20.0-1
+- libwacom-surface 2.20.0
+
 * Tue Dec 30 2025 Maximilian Luz <luzmaximilian@gmail.com> - 2.17.0-1
 - libwacom-surface 2.17.0
 

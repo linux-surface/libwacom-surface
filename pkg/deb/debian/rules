@@ -3,7 +3,7 @@ export DH_VERBOSE = 1
 export DEB_BUILD_OPTIONS = noautodbgsym
 
 LIBWACOM_V1 = 1.12.1
-LIBWACOM_V2 = 2.17.0
+LIBWACOM_V2 = 2.20.0
 
 SRC_V1 = libwacom-$(LIBWACOM_V1)
 SRC_V2 = libwacom-$(LIBWACOM_V2)
