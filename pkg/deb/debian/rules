@@ -11,8 +11,8 @@ SRC_V2 = libwacom-$(LIBWACOM_V2)
 URL_V1 = https://github.com/linuxwacom/libwacom/releases/download/libwacom-$(LIBWACOM_V1)/libwacom-$(LIBWACOM_V1).tar.bz2
 URL_V2 = https://github.com/linuxwacom/libwacom/releases/download/libwacom-$(LIBWACOM_V2)/libwacom-$(LIBWACOM_V2).tar.xz
 
-PATCHES_V1 = $(wildcard ../../patches/v1/*.patch)
-PATCHES_V2 = $(wildcard ../../patches/v2/*.patch)
+PATCHES_V1 = $(sort $(wildcard $(CURDIR)/patches/v1/*.patch))
+PATCHES_V2 = $(sort $(wildcard $(CURDIR)/patches/v2/*.patch))
 
 clean:
 	dh clean
@@ -33,13 +33,13 @@ build:
 	# Patch v1
 	cd $(SRC_V1) && \
 		for p in $(PATCHES_V1); do \
-			patch -Np1 < $$p || true; \
+			patch -Np1 < $$p || exit 1; \
 		done
 
 	# Patch v2
 	cd $(SRC_V2) && \
 		for p in $(PATCHES_V2); do \
-			patch -Np1 < $$p || true; \
+			patch -Np1 < $$p || exit 1; \
 		done
 
 	# Build v1
