@@ -32,14 +32,12 @@ build:
 
 	# Patch v1
 	cd $(SRC_V1) && \
-		(patch -Np1 < ../debian/patches/0001-Revert-minimum-meson-version-to-v0.53.0.patch || true) && \
 		for p in $(PATCHES_V1); do \
 			patch -Np1 < $$p || true; \
 		done
 
 	# Patch v2
 	cd $(SRC_V2) && \
-		(patch -Np1 < ../debian/patches/0001-Revert-minimum-meson-version-to-v0.53.0.patch || true) && \
 		for p in $(PATCHES_V2); do \
 			patch -Np1 < $$p || true; \
 		done
